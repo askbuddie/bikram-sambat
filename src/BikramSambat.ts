@@ -1,7 +1,4 @@
-import { NepaliDaysData } from "data/nepali-days";
-import { NepaliMonthsData } from "data/nepali-months";
-import { NewYearMappingData } from "data/new-year-mapping";
-import { DaysInMonthsMappingData } from "data/days-in-month-mapping";
+import { NepaliDaysData, NepaliMonthsData, NewYearMappingData, DaysInMonthsMappingData } from "./data"
 
 export default class BikramSambat {
   private static readonly nepaliDaysData = NepaliDaysData;
