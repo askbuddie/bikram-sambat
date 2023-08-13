@@ -1,4 +1,4 @@
-export default {
+export const NewYearMappingData = {
   '1970': '13-Apr-1913',
   '1971': '13-Apr-1914',
   '1972': '13-Apr-1915',

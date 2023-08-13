@@ -1,4 +1,4 @@
-export default [
+export const NepaliMonthsData = [
   { en: 'Baisakh', np: 'बैशाख', ad: 'Apr/May' },
   { en: 'Jestha', np: 'जेठ', ad: 'May/Jun' },
   { en: 'Ashad', np: 'असार', ad: 'Jun/Jul' },

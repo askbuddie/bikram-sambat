@@ -1,4 +1,4 @@
-export default [
+export const NepaliDaysData = [
   { en: 'Sunday', np: 'आइतबार' },
   { en: 'Monday', np: 'सोमबार' },
   { en: 'Tuesday', np: 'मंगलबार' },

@@ -1,13 +1,13 @@
-import NepaliDays from "data/nepali-days";
-import NepaliMonths from "data/nepali-months";
-import NewYearMapping from "data/new-year-mapping";
-import DaysInMonthMapping from "data/days-in-month-mapping";
+import { NepaliDaysData } from "data/nepali-days";
+import { NepaliMonthsData } from "data/nepali-months";
+import { NewYearMappingData } from "data/new-year-mapping";
+import { DaysInMonthsMappingData } from "data/days-in-month-mapping";
 
 export default class BikramSambat {
-  private static readonly nepaliDays = NepaliDays;
-  private static readonly nepaliMonths = NepaliMonths;
-  private static readonly newYearMapping = NewYearMapping;
-  private static readonly daysInMonthMapping = DaysInMonthMapping;
+  private static readonly nepaliDaysData = NepaliDaysData;
+  private static readonly nepaliMonthsData = NepaliMonthsData;
+  private static readonly newYearMappingData = NewYearMappingData;
+  private static readonly daysInMonthMappingData = DaysInMonthsMappingData;
 
   private year: number;
   private month: number;
