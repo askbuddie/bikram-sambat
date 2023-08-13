@@ -1,0 +1,34 @@
+{
+  "name": "nepali-date-picker",
+  "version": "0.0.1",
+  "description": "A library to support dates according to Bikram Sambat Calendar.",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/askbuddie/nepali-date-picker.git"
+  },
+  "keywords": [
+    "nepali-date-picker",
+    "bikram-sambat",
+    "nepali-date"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/askbuddie/nepali-date-picker/issues"
+  },
+  "homepage": "https://github.com/askbuddie/nepali-date-picker#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.3.0",
+    "@typescript-eslint/parser": "^6.3.0",
+    "eslint": "^8.47.0",
+    "prettier": "^3.0.1",
+    "typescript": "^5.1.6"
+  }
+}
