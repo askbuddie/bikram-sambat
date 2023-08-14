@@ -1,16 +1,16 @@
 import BikramSambat from 'BikramSambat'
-import { NepaliMonthsData, DateFormats } from 'data'
+import { NepaliMonthsData, DateFormats, type Format } from 'data'
 
 const MonthNames = NepaliMonthsData.map((month) => month.en)
 
-const formatDate = (date: BikramSambat, format: string): string => {
-  let formattedDate = format
+export const format = (date: BikramSambat, dateFormat: Format): string => {
+  let formattedDate = dateFormat as string
   const year = date.getYear()
   const month = date.getMonth()
   const day = date.getDay()
-  DateFormats.forEach((dateFormat) => {
-    if (dateFormat.format.includes(format)) {
-      dateFormat.order.forEach((component) => {
+  DateFormats.forEach((dateFormatObj) => {
+    if (dateFormatObj.format.includes(dateFormat)) {
+      dateFormatObj.order.forEach((component) => {
         if (component === 'year' && year) {
           formattedDate = formattedDate.replace('YYYY', year.toString())
           formattedDate = formattedDate.replace(

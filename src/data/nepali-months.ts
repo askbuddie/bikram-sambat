@@ -14,4 +14,3 @@ export const NepaliMonthsData = [
 ] as ReadonlyArray<Month>
 
 export type Month = { en: string; np: string; ad: string }
-
