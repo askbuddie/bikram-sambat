@@ -4,7 +4,10 @@
     "module": "NodeNext",
     "outDir": "dist",
     "strict": true,
-    "lib": ["es2022", "dom"],
+    "lib": [
+      "es2022",
+      "dom"
+    ],
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -17,6 +20,13 @@
     "incremental": true,
     "allowUnreachableCode": false,
     "alwaysStrict": true,
+    "paths": {
+      "@*": [
+        "src/*"
+      ],
+    }
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*"
+  ],
 }

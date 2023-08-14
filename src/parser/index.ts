@@ -1,9 +1,15 @@
-import BikramSambat from 'BikramSambat'
-import { NepaliMonthsData, DateFormats } from '../../data'
+// import BikramSambat from 'BikramSambat'
+import { NepaliMonthsData, DateFormats } from '../data'
 
 const MonthNames = NepaliMonthsData.map((month) => month.en)
 
-export const parse = (dateString: string): BikramSambat => {
+export const parse = (
+  dateString: string
+): {
+  year?: number
+  month?: number
+  day?: number
+} => {
   for (const dateFormat of DateFormats) {
     const match = dateString.match(dateFormat.regex)
     if (match) {
@@ -25,8 +31,9 @@ export const parse = (dateString: string): BikramSambat => {
         }
       })
       const { year, month, day } = parsedDate
-      return new BikramSambat(year, month, day)
+      // return new BikramSambat(year, month, day)
+      return { year, month, day }
     }
   }
-  return new BikramSambat()
+  return {}
 }
