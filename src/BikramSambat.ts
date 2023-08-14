@@ -10,10 +10,24 @@ export default class BikramSambat {
   private month: number;
   private day: number;
 
-  constructor(year: number | undefined, month: number | undefined, day: number | undefined) {
+  constructor(year?: number | undefined, month?: number | undefined, day?: number | undefined) {
     // TODO: this needs to be changed.
     this.year = year || 0;
     this.month = month || 0;
     this.day = day || 0;
   }
+
+  public getYear(): number {
+    return this.year;
+  }
+
+  public getMonth(): number {
+    return this.month;
+  }
+
+  public getDay(): number {
+    return this.day;
+  }
+  
+  
 }
