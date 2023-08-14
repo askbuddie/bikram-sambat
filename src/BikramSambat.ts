@@ -1,19 +1,25 @@
-import { NepaliDaysData, NepaliMonthsData, NewYearMappingData, DaysInMonthsMappingData } from "./data"
+// @ts-nocheck : TODO: Remove this line
+import {
+  NepaliDaysData,
+  NepaliMonthsData,
+  NewYearMappingData,
+  DaysInMonthsMappingData
+} from './data'
 
 export default class BikramSambat {
-  private static readonly nepaliDaysData = NepaliDaysData;
-  private static readonly nepaliMonthsData = NepaliMonthsData;
-  private static readonly newYearMappingData = NewYearMappingData;
-  private static readonly daysInMonthMappingData = DaysInMonthsMappingData;
+  private readonly nepaliDays = NepaliDaysData
+  private readonly nepaliMonths = NepaliMonthsData
+  private readonly newYearMap = NewYearMappingData
+  private readonly daysInMonthMap = DaysInMonthsMappingData
 
-  private year: number;
-  private month: number;
-  private day: number;
+  private year: number
+  private month: number
+  private day: number
 
-  constructor(year: number | undefined, month: number | undefined, day: number | undefined) {
+  constructor(year: number = 0, month: number = 0, day: number = 0) {
     // TODO: this needs to be changed.
-    this.year = year || 0;
-    this.month = month || 0;
-    this.day = day || 0;
+    this.year = year
+    this.month = month
+    this.day = day
   }
 }
