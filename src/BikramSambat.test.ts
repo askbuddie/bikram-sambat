@@ -5,4 +5,9 @@ describe('BikramSambat Class', () => {
     const bikramSambat = new BikramSambat()
     expect(bikramSambat).toBeInstanceOf(BikramSambat)
   })
+
+  it('should return correct formatted date .format()', () => {
+    const bikramSambat = new BikramSambat('2075-01-01')
+    expect(bikramSambat.format('YYYY-MM-DD')).toBe('2075-01-01')
+  })
 })

@@ -1,16 +1,19 @@
+import { format } from 'format'
 import { parse } from './parser'
-import {
-  NepaliDaysData,
-  NepaliMonthsData,
-  NewYearMappingData,
-  DaysInMonthsMappingData
-} from './data'
+import { Format } from 'data'
+// import {
+//   NepaliDaysData,
+//   NepaliMonthsData,
+//   NewYearMappingData,
+//   DaysInMonthsMappingData
+// } from './data'
 
 export default class BikramSambat {
-  private readonly nepaliDays = NepaliDaysData
-  private readonly nepaliMonths = NepaliMonthsData
-  private readonly newYearMap = NewYearMappingData
-  private readonly daysInMonthMap = DaysInMonthsMappingData
+  // TODO: uncomment these once the data in use
+  // private readonly nepaliDays = NepaliDaysData
+  // private readonly nepaliMonths = NepaliMonthsData
+  // private readonly newYearMap = NewYearMappingData
+  // private readonly daysInMonthMap = DaysInMonthsMappingData
 
   private year: number
   private month: number
@@ -23,10 +26,15 @@ export default class BikramSambat {
         Prerequisite: AD to BS conversion method
      */
     if (typeof dateStr === 'string') {
-      const { year, month, day } = parse(dateStr)
-      this.year = year || 0
-      this.month = month || 0
-      this.day = day || 0
+      const parsedDate = parse(dateStr)
+      if (typeof parsedDate === 'string') {
+        throw new Error(parsedDate)
+      } else {
+        const { year, month, day } = parsedDate
+        this.year = year || 0
+        this.month = month || 0
+        this.day = day || 0
+      }
     } else if (dateStr instanceof BikramSambat) {
       this.year = dateStr.getYear()
       this.month = dateStr.getMonth()
@@ -48,5 +56,9 @@ export default class BikramSambat {
 
   public getDay(): number {
     return this.day
+  }
+
+  public format(formatStr: Format): string {
+    return format(this, formatStr)
   }
 }
