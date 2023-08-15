@@ -156,23 +156,25 @@ describe('Date Formatting', () => {
     const result = format(date, 'YYYY/MM DD')
     expect(result).toEqual('2079/08 15')
   })
+})
 
-  it('should parse format and generate order array', () => {
+describe('generate order array', () => {
+  it('should generate order array', () => {
     const formatString = 'MM/DD'
     const orderArray = generateDateFormatOrder(formatString)
     expect(orderArray).toEqual(['month', 'day'])
   })
-  it('should parse format and generate order array', () => {
+  it('should generate order array', () => {
     const formatString = 'YY-MM/DD'
     const orderArray = generateDateFormatOrder(formatString)
     expect(orderArray).toEqual(['year', 'month', 'day'])
   })
-  it('should parse format and generate order array', () => {
+  it('should generate order array', () => {
     const formatString = 'YYY-MM/DD'
     const orderArray = generateDateFormatOrder(formatString)
     expect(orderArray).toEqual(['year', 'month', 'day'])
   })
-  it('should parse format and generate order array', () => {
+  it('should generate order array', () => {
     const formatString = 'DD-MMMM-YYYY'
     const orderArray = generateDateFormatOrder(formatString)
     expect(orderArray).toEqual(['day', 'month', 'year'])
