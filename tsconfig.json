@@ -1,7 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "lib": [
+      "ESNext"
+    ],
+    "target": "es2020",
     "module": "NodeNext",
+    "removeComments": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "dist",
     "strict": true,
     "lib": [
@@ -19,14 +27,9 @@
     "isolatedModules": true,
     "incremental": true,
     "allowUnreachableCode": false,
-    "alwaysStrict": true,
-    "paths": {
-      "@*": [
-        "src/*"
-      ],
-    }
+    "alwaysStrict": true
   },
   "include": [
     "src/**/*"
-  ],
+  ]
 }

@@ -7,10 +7,10 @@ import {
 } from './data'
 
 export default class BikramSambat {
-  private static readonly nepaliDaysData = NepaliDaysData
-  private static readonly nepaliMonthsData = NepaliMonthsData
-  private static readonly newYearMappingData = NewYearMappingData
-  private static readonly daysInMonthMappingData = DaysInMonthsMappingData
+  private readonly nepaliDays = NepaliDaysData
+  private readonly nepaliMonths = NepaliMonthsData
+  private readonly newYearMap = NewYearMappingData
+  private readonly daysInMonthMap = DaysInMonthsMappingData
 
   private year: number
   private month: number
