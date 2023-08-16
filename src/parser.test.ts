@@ -50,6 +50,15 @@ describe('Date Parsing', () => {
     expect(result).toEqual({ year: 2080, month: 8, day: 15 })
   })
 
+  it('should parse  MMMM DD, YYYY format', () => {
+    const result = parse('Mangsir 15, 2080')
+    expect(result).toEqual({ year: 2080, month: 8, day: 15 })
+  })
+  it('should parse  MMMM DD YYYY format', () => {
+    const result = parse('Mangsir 15 2080')
+    expect(result).toEqual({ year: 2080, month: 8, day: 15 })
+  })
+
   it('should parse DD-MM-YYYY format', () => {
     const result = parse('15-08-2080')
     expect(result).toEqual({ year: 2080, month: 8, day: 15 })

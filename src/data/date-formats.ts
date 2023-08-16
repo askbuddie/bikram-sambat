@@ -8,10 +8,11 @@ type DateSeparator = '-' | '/' | ' ' | '. '
  */
 export type Format =
   | 'YYYY'
-  | `YYYY${DateSeparator}MM`
-  | `${'YYYY' | 'YYY' | 'YY'}${DateSeparator}MM${DateSeparator}DD`
-  | `DD${DateSeparator}${'MMMM' | 'MM'}${DateSeparator}YYYY`
-  | `MM${DateSeparator}DD`
+  | `${'YYYY'}${DateSeparator}${'MM'}`
+  | `${'YYYY' | 'YYY' | 'YY'}${DateSeparator}${'MM'}${DateSeparator}${'DD'}`
+  | `${'DD'}${DateSeparator}${'MMMM' | 'MM'}${DateSeparator}${'YYYY'}`
+  | `${'MMMM'}${DateSeparator}${'DD'}${DateSeparator}${'YYYY'}`
+  | `${'MM'}${DateSeparator}${'DD'}`
 
 interface DateFormat {
   regex: RegExp
@@ -36,6 +37,10 @@ export const DateFormats: DateFormat[] = [
   {
     regex: /^(\d{1,2})(?:[-/ ]([A-Za-z]+))(?:[-/ ](\d{4}))$/,
     format: 'DD-MMMM-YYYY'
+  },
+  {
+    regex: /^([A-Za-z]+) (\d{1,2})(?:,)?(?:[-/ ,](\d{4}))?$/,
+    format: 'MMMM-DD-YYYY'
   },
   {
     regex: /^(\d{1,2})(?:[-/ ](\d{1,2}))(?:[-/ ](\d{4}))$/,

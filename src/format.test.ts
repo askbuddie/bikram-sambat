@@ -156,6 +156,11 @@ describe('Date Formatting', () => {
     const result = format(date, 'YYYY/MM DD')
     expect(result).toEqual('2079/08 15')
   })
+  it('should format date with mismatched separators (MMMM DD YYYY)', () => {
+    const date = new BikramSambat('2079-8-15')
+    const result = format(date, 'MMMM DD YYYY')
+    expect(result).toEqual('Mangsir 15 2079')
+  })
 })
 
 describe('generate order array', () => {
