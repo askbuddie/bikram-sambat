@@ -161,15 +161,15 @@ describe('Date Formatting', () => {
     expect(result).toEqual('Mangsir 15 2079')
   })
 
-  it('should handle invalid date', () => {
+  it('should handle Invalid Date', () => {
     const date = new BikramSambat('2079815')
     const date2 = new BikramSambat('798-15')
-    const date3 = new BikramSambat('invalid date')
+    const date3 = new BikramSambat('Invalid Date')
     const result = format(date, 'YYYY MM DD')
     const result2 = format(date2, 'YYYY MM DD')
     const result3 = format(date3, 'YYYY MM DD')
-    expect(result).toEqual('invalid date')
-    expect(result2).toEqual('invalid date')
-    expect(result3).toEqual('invalid date')
+    expect(result).toEqual('Invalid Date')
+    expect(result2).toEqual('Invalid Date')
+    expect(result3).toEqual('Invalid Date')
   })
 })

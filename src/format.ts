@@ -16,8 +16,8 @@ const MonthNames = NepaliMonthsData.map((month) => month.en)
  * console.log(formattedDate) // 2077-01-01
  */
 export const format = (date: BikramSambat, dateFormat: Format): string => {
-  if (date.toString() === 'invalid date') {
-    return 'invalid date'
+  if (date.toString() === 'Invalid Date') {
+    return 'Invalid Date'
   }
   let formattedDate = dateFormat as string
   const year = date.getYear()
