@@ -1,15 +1,15 @@
-import { Format } from 'data'
+import { DateFormat } from 'data'
 
 type Order = 'year' | 'month' | 'day'
 
 /**
  * Generates an array of the order of date components in the given format string.
  *
- * @param {Format} formatString The format string to parse.
- * @returns {Order[]} An array of the order of date components. 
+ * @param {DateFormat} formatString The format string to parse.
+ * @returns {Order[]} An array of the order of date components.
  * @example generateDateFormatOrder('YYYY-MM-DD') // ['year', 'month', 'day']
  */
-export const generateDateFormatOrder = (formatString: Format): Order[] => {
+export const generateDateFormatOrder = (formatString: DateFormat): Order[] => {
   const orderArray: Order[] = []
   const regex = /YYYY|YYY|YY|MMMM|MM|DD/g
   let match

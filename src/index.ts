@@ -1,4 +1,4 @@
-import BikramSambat from './BikramSambat';
+import BikramSambat from 'BikramSambat';
 const NepaliDateLib = {
   BikramSambat
 }

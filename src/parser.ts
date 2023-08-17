@@ -20,7 +20,7 @@ export const parse = (dateString: string): ParseResult | string => {
   for (const dateFormat of DateFormats) {
     const match = dateString.match(dateFormat.regex)
     if (match) {
-      const parsedDate: { year?: number; month?: number; day?: number } = {}
+      const parsedDate: ParseResult = {}
       const order = generateDateFormatOrder(dateFormat.format)
       order.forEach((component, index) => {
         if (
@@ -38,17 +38,20 @@ export const parse = (dateString: string): ParseResult | string => {
           }
         }
       })
-      const { year, month, day } = parsedDate
-      // checking if the date is valid
-      if (!isDayValid(year, month, day)) {
-        return 'Invalid Date'
+
+      // If month or day is not provided, default to 1
+      if (!parsedDate.month) {
+        parsedDate.month = 1
       }
 
-      return {
-        ...(year ? { year } : {}),
-        ...(month ? { month } : {}),
-        ...(day ? { day } : {})
+      if (!parsedDate.day) {
+        parsedDate.day = 1
       }
+
+      if (!isDayValid(parsedDate.year, parsedDate.month, parsedDate.day)) {
+        return 'Invalid Date'
+      }
+      return parsedDate
     }
   }
   return 'Invalid Date'
@@ -62,11 +65,10 @@ export const parse = (dateString: string): ParseResult | string => {
  * @param {number} day - The day.
  * @returns {boolean} `true` if the day is valid, otherwise `false`.
  */
-export const isDayValid = (
-  year: number | undefined,
-  month: number | undefined,
-  day: number | undefined
-) => {
+export const isDayValid = (year?: number, month?: number, day?: number) => {
+  if (year === undefined || month === undefined || day === undefined) {
+    return false
+  }
   if (month != undefined && (month < 1 || month > 12)) {
     return false
   }
