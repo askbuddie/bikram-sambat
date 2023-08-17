@@ -62,11 +62,23 @@ export const parse = (dateString: string): ParseResult | string => {
  * @param {number} day - The day.
  * @returns {boolean} `true` if the day is valid, otherwise `false`.
  */
-export const isDayValid = (year?: number, month?: number, day?: number) => {
-  if (month && (month < 0 || month > 12)) {
+export const isDayValid = (
+  year: number | undefined,
+  month: number | undefined,
+  day: number | undefined
+) => {
+  if (month != undefined && (month < 1 || month > 12)) {
     return false
   }
-  if (year && month && day && year < 2100 && year > 1975) {
+  if (year != undefined && (year > 2100 || year < 1975)) {
+    return false
+  }
+
+  if (day != undefined && (day < 1 || day > 32)) {
+    return false
+  }
+
+  if (year != undefined && month != undefined && day != undefined) {
     const daysInGivenMonth = DaysInMonthsMappingData[year][month - 1]
     if (day > daysInGivenMonth) {
       return false
