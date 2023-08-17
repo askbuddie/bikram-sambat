@@ -13,7 +13,7 @@ type ParseResult = {
  * Parses a date string using predefined date formats.
  *
  * @param {string} dateString - The date string to be parsed.
- * @returns {(ParseResult | string)} - The parsed date components or "invalid date" if parsing fails.
+ * @returns {(ParseResult | string)} - The parsed date components or "Invalid Date" if parsing fails.
  * @example parse('2077-01-01') // { year: 2077, month: 1, day: 1 }
  */
 export const parse = (dateString: string): ParseResult | string => {
@@ -41,7 +41,7 @@ export const parse = (dateString: string): ParseResult | string => {
       const { year, month, day } = parsedDate
       // checking if the date is valid
       if (!isDayValid(year, month, day)) {
-        return 'invalid date'
+        return 'Invalid Date'
       }
 
       return {
@@ -51,7 +51,7 @@ export const parse = (dateString: string): ParseResult | string => {
       }
     }
   }
-  return 'invalid date'
+  return 'Invalid Date'
 }
 
 /**

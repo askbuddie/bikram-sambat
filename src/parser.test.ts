@@ -130,23 +130,23 @@ describe('Date Parsing', () => {
     expect(result).toEqual({ year: 2079, month: 8, day: 15 })
   })
 
-  it('should handle invalid date format', () => {
-    const result = parse('invalid date')
-    expect(result).toEqual('invalid date')
+  it('should handle Invalid Date format', () => {
+    const result = parse('Invalid Date')
+    expect(result).toEqual('Invalid Date')
   })
 
   it('should handle day out of range', () => {
     const result = parse('2079-02-32')
-    expect(result).toEqual('invalid date')
+    expect(result).toEqual('Invalid Date')
   })
 
   it('should handle month out of range', () => {
     const result = parse('2079-15-15')
-    expect(result).toEqual('invalid date')
+    expect(result).toEqual('Invalid Date')
   })
 
   it('should handle month out of range with month name', () => {
     const result = parse('2079-15-15')
-    expect(result).toEqual('invalid date')
+    expect(result).toEqual('Invalid Date')
   })
 })
