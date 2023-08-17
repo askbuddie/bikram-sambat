@@ -1,6 +1,6 @@
 import BikramSambat from 'BikramSambat'
 import { NepaliMonthsData, type Format } from 'data'
-import { generateDateFormatOrder } from 'utils'
+import { generateDateFormatOrder } from 'utils/generateDateFormatOrder'
 
 const MonthNames = NepaliMonthsData.map((month) => month.en)
 
