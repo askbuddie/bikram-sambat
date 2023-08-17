@@ -1,5 +1,5 @@
-import { format } from './format'
-import BikramSambat from './BikramSambat'
+import { format } from 'format'
+import BikramSambat from 'BikramSambat'
 describe('Date Formatting', () => {
   it('should format date to YYYY', () => {
     const date = new BikramSambat('2079-8-15')
@@ -77,24 +77,6 @@ describe('Date Formatting', () => {
     const date = new BikramSambat('2079-8-15')
     const result = format(date, 'DD MM YYYY')
     expect(result).toEqual('15 08 2079')
-  })
-
-  it('should format date to MM-DD', () => {
-    const date = new BikramSambat('2079-8-15')
-    const result = format(date, 'MM-DD')
-    expect(result).toEqual('08-15')
-  })
-
-  it('should format date to MM/DD', () => {
-    const date = new BikramSambat('2079-8-15')
-    const result = format(date, 'MM/DD')
-    expect(result).toEqual('08/15')
-  })
-
-  it('should format date to MM DD', () => {
-    const date = new BikramSambat('2079-8-15')
-    const result = format(date, 'MM DD')
-    expect(result).toEqual('08 15')
   })
 
   it('should format date to YY-MM-DD', () => {

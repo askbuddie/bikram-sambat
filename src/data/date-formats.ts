@@ -6,17 +6,16 @@ type DateSeparator = '-' | '/' | ' ' | '. '
 /**
  * Date formats supported by the parser and formatter
  */
-export type Format =
+export type DateFormat =
   | 'YYYY'
   | `${'YYYY'}${DateSeparator}${'MM'}`
   | `${'YYYY' | 'YYY' | 'YY'}${DateSeparator}${'MM'}${DateSeparator}${'DD'}`
   | `${'DD'}${DateSeparator}${'MMMM' | 'MM'}${DateSeparator}${'YYYY'}`
   | `${'MMMM'}${DateSeparator}${'DD'}${DateSeparator}${'YYYY'}`
-  | `${'MM'}${DateSeparator}${'DD'}`
 
-interface DateFormat {
+interface DateFormatDetails {
   regex: RegExp
-  format: Format // General format of the date
+  format: DateFormat // General format of the date
 }
 
 /**
@@ -24,7 +23,7 @@ interface DateFormat {
  * @internal Used by the parser and formatter
  * @ignore Exclude from docs
  */
-export const DateFormats: DateFormat[] = [
+export const DateFormats: DateFormatDetails[] = [
   { regex: /^(\d{4})$/, format: 'YYYY' },
   {
     regex: /^(\d{4})(?:[-/ ](\d{1,2}))$/,
@@ -45,9 +44,5 @@ export const DateFormats: DateFormat[] = [
   {
     regex: /^(\d{1,2})(?:[-/ ](\d{1,2}))(?:[-/ ](\d{4}))$/,
     format: 'DD-MM-YYYY'
-  },
-  {
-    regex: /^(\d{1,2})(?:[-/ ](\d{1,2}))$/,
-    format: 'MM-DD'
   }
 ]
