@@ -1,4 +1,4 @@
-import { NepaliMonthsData, DateFormats, DaysInMonthsMappingData } from './data'
+import { NepaliMonthsData, DateFormats, DaysInMonthsMappingData } from 'data'
 import { generateDateFormatOrder } from 'utils/generateDateFormatOrder'
 
 const MonthNames = NepaliMonthsData.map((month) => month.en)
@@ -69,22 +69,19 @@ export const isDayValid = (year?: number, month?: number, day?: number) => {
   if (year === undefined || month === undefined || day === undefined) {
     return false
   }
-  if (month != undefined && (month < 1 || month > 12)) {
+  if (
+    year > 2100 ||
+    year < 1975 ||
+    month < 1 ||
+    month > 12 ||
+    day < 1 ||
+    day > 32
+  ) {
     return false
   }
-  if (year != undefined && (year > 2100 || year < 1975)) {
+  const daysInGivenMonth = DaysInMonthsMappingData[year][month - 1]
+  if (day > daysInGivenMonth) {
     return false
-  }
-
-  if (day != undefined && (day < 1 || day > 32)) {
-    return false
-  }
-
-  if (year != undefined && month != undefined && day != undefined) {
-    const daysInGivenMonth = DaysInMonthsMappingData[year][month - 1]
-    if (day > daysInGivenMonth) {
-      return false
-    }
   }
   return true
 }
