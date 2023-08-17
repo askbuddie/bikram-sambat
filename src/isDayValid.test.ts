@@ -24,4 +24,11 @@ describe('isDayValid (Bikram Sambat Calendar)', () => {
   it('should return false for day exceeding days in given month', () => {
     expect(isDayValid(2075, 2, 32)).toBe(false)
   })
+
+  it('should return false for invalid combinations', () => {
+    expect(isDayValid()).toBe(false)
+    expect(isDayValid(2070)).toBe(false)
+    expect(isDayValid(undefined, 3)).toBe(false)
+    expect(isDayValid(undefined, undefined, 23)).toBe(false)
+  })
 })

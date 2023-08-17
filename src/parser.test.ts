@@ -2,22 +2,22 @@ import { parse } from './parser'
 describe('Date Parsing', () => {
   it('should parse YYYY format', () => {
     const result = parse('2080')
-    expect(result).toEqual({ year: 2080 })
+    expect(result).toEqual({ year: 2080, month: 1, day: 1 })
   })
 
   it('should parse YYYY-MM format', () => {
     const result = parse('2080-08')
-    expect(result).toEqual({ year: 2080, month: 8 })
+    expect(result).toEqual({ year: 2080, month: 8, day: 1 })
   })
 
   it('should parse YYYY/MM format', () => {
     const result = parse('2080/08')
-    expect(result).toEqual({ year: 2080, month: 8 })
+    expect(result).toEqual({ year: 2080, month: 8, day: 1 })
   })
 
   it('should parse YYYY MM format', () => {
     const result = parse('2080 08')
-    expect(result).toEqual({ year: 2080, month: 8 })
+    expect(result).toEqual({ year: 2080, month: 8, day: 1 })
   })
 
   it('should parse YYYY-MM-DD format', () => {
@@ -72,19 +72,6 @@ describe('Date Parsing', () => {
   it('should parse DD MM YYYY format', () => {
     const result = parse('15 08 2080')
     expect(result).toEqual({ year: 2080, month: 8, day: 15 })
-  })
-  it('should parse MM-DD format', () => {
-    const result = parse('08-15')
-    expect(result).toEqual({ month: 8, day: 15 })
-  })
-  it('should parse MM/DD format', () => {
-    const result = parse('08/15')
-    expect(result).toEqual({ month: 8, day: 15 })
-  })
-
-  it('should parse MM DD format', () => {
-    const result = parse('08 15')
-    expect(result).toEqual({ month: 8, day: 15 })
   })
 
   it('should parse YY-MM-DD format', () => {
@@ -142,6 +129,11 @@ describe('Date Parsing', () => {
 
   it('should handle month out of range', () => {
     const result = parse('2079-15-15')
+    expect(result).toEqual('Invalid Date')
+  })
+
+  it('should handle MM-DD format as invalid date', () => {
+    const result = parse('10-15')
     expect(result).toEqual('Invalid Date')
   })
 
