@@ -1,4 +1,4 @@
-// @ts-nocheck : TODO: Remove this line
+
 import {
   NepaliDaysData,
   NepaliMonthsData,
@@ -21,5 +21,11 @@ export default class BikramSambat {
     this.year = year
     this.month = month
     this.day = day
+  }
+  public getPreviousMonth():number{
+    return this.month - 1
+  }
+  public getNextMonth():number{
+    return this.month + 1
   }
 }
