@@ -1,6 +1,6 @@
 import { format } from 'format'
-import { isDayValid, parse } from './parser'
-import { Format } from 'data'
+import { isDayValid, parse } from 'parser'
+import { DateFormat } from 'data'
 // import {
 //   NepaliDaysData,
 //   NepaliMonthsData,
@@ -33,9 +33,9 @@ export default class BikramSambat {
         this.day = undefined
       } else {
         const { year, month, day } = parsedDate
-        this.year = year ?? undefined
-        this.month = month ?? undefined
-        this.day = day ?? undefined
+        this.year = year
+        this.month = month
+        this.day = day
       }
     } else if (dateStr instanceof BikramSambat) {
       this.year = dateStr.getYear()
@@ -60,7 +60,7 @@ export default class BikramSambat {
     return this.day ?? NaN
   }
 
-  public format(formatStr: Format): string {
+  public format(formatStr: DateFormat): string {
     return format(this, formatStr)
   }
 
@@ -75,9 +75,8 @@ export default class BikramSambat {
     if (!isDayValid(this.year, this.month, this.day)) {
       return 'Invalid Date'
     }
-    // the month and day are padded with 0 if they are less than 10
-    const month = this.month <= 9 ? '0' + this.month : this.month
-    const day = this.day <= 9 ? '0' + this.day : this.day
+    const month = `${this.month}`.padStart(2, '0')
+    const day = `${this.day}`.padStart(2, '0')
     return `${this.year}-${month}-${day}`
   }
 }

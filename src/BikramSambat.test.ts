@@ -36,16 +36,16 @@ describe('BikramSambat Class', () => {
     expect(bikramSambat.toString()).toBe('Invalid Date')
   })
 
-  it('should return Invalid Date Format .getDay()', () => {
+  it('should return Invalid Date DateFormat .getDay()', () => {
     const bikramSambat = new BikramSambat('207501-01')
     expect(bikramSambat.getDay()).toBe(NaN)
   })
 
-  it('should return Invalid Date Format .getMonth()', () => {
+  it('should return Invalid Date DateFormat .getMonth()', () => {
     const bikramSambat = new BikramSambat('207501-01')
     expect(bikramSambat.getMonth()).toBe(NaN)
   })
-  it('should return Invalid Date Format .getYear()', () => {
+  it('should return Invalid Date DateFormat .getYear()', () => {
     const bikramSambat = new BikramSambat('207501-01')
     expect(bikramSambat.getYear()).toBe(NaN)
   })
