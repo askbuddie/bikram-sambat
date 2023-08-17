@@ -1,5 +1,5 @@
 import { format } from 'format'
-import { parse } from './parser'
+import { isDayValid, parse } from './parser'
 import { Format } from 'data'
 // import {
 //   NepaliDaysData,
@@ -28,7 +28,9 @@ export default class BikramSambat {
     if (typeof dateStr === 'string') {
       const parsedDate = parse(dateStr)
       if (typeof parsedDate === 'string') {
-        throw new Error(parsedDate)
+        this.year = 0
+        this.month = 0
+        this.day = 0
       } else {
         const { year, month, day } = parsedDate
         this.year = year || 0
@@ -60,5 +62,12 @@ export default class BikramSambat {
 
   public format(formatStr: Format): string {
     return format(this, formatStr)
+  }
+
+  toString(): string {
+    if (!isDayValid(this.year, this.month, this.day)) {
+      return 'invalid date'
+    }
+    return `${this.year}-${this.month}-${this.day}`
   }
 }
