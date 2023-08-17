@@ -1,4 +1,3 @@
-import { generateDateFormatOrder } from 'utils'
 import { format } from './format'
 import BikramSambat from './BikramSambat'
 describe('Date Formatting', () => {
@@ -161,27 +160,16 @@ describe('Date Formatting', () => {
     const result = format(date, 'MMMM DD YYYY')
     expect(result).toEqual('Mangsir 15 2079')
   })
-})
 
-describe('generate order array', () => {
-  it('should generate order array', () => {
-    const formatString = 'MM/DD'
-    const orderArray = generateDateFormatOrder(formatString)
-    expect(orderArray).toEqual(['month', 'day'])
-  })
-  it('should generate order array', () => {
-    const formatString = 'YY-MM/DD'
-    const orderArray = generateDateFormatOrder(formatString)
-    expect(orderArray).toEqual(['year', 'month', 'day'])
-  })
-  it('should generate order array', () => {
-    const formatString = 'YYY-MM/DD'
-    const orderArray = generateDateFormatOrder(formatString)
-    expect(orderArray).toEqual(['year', 'month', 'day'])
-  })
-  it('should generate order array', () => {
-    const formatString = 'DD-MMMM-YYYY'
-    const orderArray = generateDateFormatOrder(formatString)
-    expect(orderArray).toEqual(['day', 'month', 'year'])
+  it('should handle invalid date', () => {
+    const date = new BikramSambat('2079815')
+    const date2 = new BikramSambat('798-15')
+    const date3 = new BikramSambat('invalid date')
+    const result = format(date, 'YYYY MM DD')
+    const result2 = format(date2, 'YYYY MM DD')
+    const result3 = format(date3, 'YYYY MM DD')
+    expect(result).toEqual('invalid date')
+    expect(result2).toEqual('invalid date')
+    expect(result3).toEqual('invalid date')
   })
 })
