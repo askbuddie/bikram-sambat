@@ -1,6 +1,6 @@
 import { format } from 'format'
 import { isDayValid, parse } from 'parser'
-import { DateFormat } from 'data'
+import { DateFormat, InvalidDate } from 'data'
 // import {
 //   NepaliDaysData,
 //   NepaliMonthsData,
@@ -70,10 +70,10 @@ export default class BikramSambat {
       this.month === undefined ||
       this.day === undefined
     ) {
-      return 'Invalid Date'
+      return InvalidDate
     }
     if (!isDayValid(this.year, this.month, this.day)) {
-      return 'Invalid Date'
+      return InvalidDate
     }
     const month = `${this.month}`.padStart(2, '0')
     const day = `${this.day}`.padStart(2, '0')

@@ -1,8 +1,6 @@
 import BikramSambat from 'BikramSambat'
-import { NepaliMonthsData, type DateFormat } from 'data'
+import { NepaliMonthsNameEn, type DateFormat, InvalidDate } from 'data'
 import { generateDateFormatOrder } from 'utils/generateDateFormatOrder'
-
-const MonthNamesEn = NepaliMonthsData.map((month) => month.en)
 
 /**
  * Formats a BikramSambat date into the specified format.
@@ -16,8 +14,8 @@ const MonthNamesEn = NepaliMonthsData.map((month) => month.en)
  * console.log(formattedDate) // 2077-01-01
  */
 export const format = (date: BikramSambat, dateFormat: DateFormat): string => {
-  if (date.toString() === 'Invalid Date') {
-    return 'Invalid Date'
+  if (date.toString() === InvalidDate) {
+    return InvalidDate
   }
   let formattedDate = dateFormat as string
   const year = date.getYear()
@@ -30,8 +28,11 @@ export const format = (date: BikramSambat, dateFormat: DateFormat): string => {
       formattedDate = formattedDate.replace('YYY', year.toString().slice(-3))
       formattedDate = formattedDate.replace('YY', year.toString().slice(-2))
     } else if (component === 'month' && month) {
-      if (MonthNamesEn[month - 1]) {
-        formattedDate = formattedDate.replace('MMMM', MonthNamesEn[month - 1])
+      if (NepaliMonthsNameEn[month - 1]) {
+        formattedDate = formattedDate.replace(
+          'MMMM',
+          NepaliMonthsNameEn[month - 1]
+        )
         formattedDate = formattedDate.replace(
           'MM',
           month.toString().padStart(2, '0')

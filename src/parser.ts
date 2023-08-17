@@ -1,7 +1,11 @@
-import { NepaliMonthsData, DateFormats, DaysInMonthsMappingData } from 'data'
+import {
+  DateFormats,
+  DaysInMonthsMappingData,
+  InvalidDate,
+  NepaliMonthsNameEn,
+  type ErrorInvalidDate
+} from 'data'
 import { generateDateFormatOrder } from 'utils/generateDateFormatOrder'
-
-const MonthNames = NepaliMonthsData.map((month) => month.en)
 
 type ParseResult = {
   year?: number
@@ -13,10 +17,10 @@ type ParseResult = {
  * Parses a date string using predefined date formats.
  *
  * @param {string} dateString - The date string to be parsed.
- * @returns {(ParseResult | string)} - The parsed date components or "Invalid Date" if parsing fails.
+ * @returns {(ParseResult | ErrorInvalidDate)} - The parsed date components or "Invalid Date" if parsing fails.
  * @example parse('2077-01-01') // { year: 2077, month: 1, day: 1 }
  */
-export const parse = (dateString: string): ParseResult | string => {
+export const parse = (dateString: string): ParseResult | ErrorInvalidDate => {
   for (const dateFormat of DateFormats) {
     const match = dateString.match(dateFormat.regex)
     if (match) {
@@ -25,9 +29,10 @@ export const parse = (dateString: string): ParseResult | string => {
       order.forEach((component, index) => {
         if (
           component === 'month' &&
-          MonthNames.indexOf(match[index + 1]) >= 0
+          NepaliMonthsNameEn.indexOf(match[index + 1]) >= 0
         ) {
-          parsedDate[component] = MonthNames.indexOf(match[index + 1]) + 1
+          parsedDate[component] =
+            NepaliMonthsNameEn.indexOf(match[index + 1]) + 1
         } else {
           if (component === 'year' && match[index + 1].length < 4) {
             if (match[index + 1].length === 2)
@@ -49,12 +54,12 @@ export const parse = (dateString: string): ParseResult | string => {
       }
 
       if (!isDayValid(parsedDate.year, parsedDate.month, parsedDate.day)) {
-        return 'Invalid Date'
+        return InvalidDate
       }
       return parsedDate
     }
   }
-  return 'Invalid Date'
+  return InvalidDate
 }
 
 /**

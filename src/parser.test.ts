@@ -1,3 +1,4 @@
+import { InvalidDate } from 'data'
 import { parse } from './parser'
 describe('Date Parsing', () => {
   it('should parse YYYY format', () => {
@@ -118,27 +119,27 @@ describe('Date Parsing', () => {
   })
 
   it('should handle Invalid Date format', () => {
-    const result = parse('Invalid Date')
-    expect(result).toEqual('Invalid Date')
+    const result = parse(InvalidDate)
+    expect(result).toEqual(InvalidDate)
   })
 
   it('should handle day out of range', () => {
     const result = parse('2079-02-32')
-    expect(result).toEqual('Invalid Date')
+    expect(result).toEqual(InvalidDate)
   })
 
   it('should handle month out of range', () => {
     const result = parse('2079-15-15')
-    expect(result).toEqual('Invalid Date')
+    expect(result).toEqual(InvalidDate)
   })
 
   it('should handle MM-DD format as invalid date', () => {
     const result = parse('10-15')
-    expect(result).toEqual('Invalid Date')
+    expect(result).toEqual(InvalidDate)
   })
 
   it('should handle month out of range with month name', () => {
     const result = parse('2079-15-15')
-    expect(result).toEqual('Invalid Date')
+    expect(result).toEqual(InvalidDate)
   })
 })

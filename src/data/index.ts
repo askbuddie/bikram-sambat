@@ -1,5 +1,6 @@
 export { NepaliDaysData } from './nepali-days'
-export { NepaliMonthsData } from './nepali-months'
+export { NepaliMonthsData, NepaliMonthsNameEn } from './nepali-months'
 export { NewYearMappingData } from './new-year-mapping'
 export { DaysInMonthsMappingData } from './days-in-month-mapping'
 export { DateFormats, type DateFormat } from './date-formats'
+export { InvalidDate, type ErrorInvalidDate } from './invalid-date'

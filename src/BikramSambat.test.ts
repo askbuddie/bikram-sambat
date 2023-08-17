@@ -1,5 +1,5 @@
 import BikramSambat from 'BikramSambat'
-
+import { InvalidDate } from 'data'
 describe('BikramSambat Class', () => {
   it('should create an instance of BikramSambat with empty constructor', () => {
     const bikramSambat = new BikramSambat()
@@ -33,7 +33,7 @@ describe('BikramSambat Class', () => {
 
   it('should return Invalid Date .toString()', () => {
     const bikramSambat = new BikramSambat('207501-01')
-    expect(bikramSambat.toString()).toBe('Invalid Date')
+    expect(bikramSambat.toString()).toBe(InvalidDate)
   })
 
   it('should return Invalid Date DateFormat .getDay()', () => {

@@ -14,3 +14,5 @@ export const NepaliMonthsData = [
 ] as ReadonlyArray<Month>
 
 export type Month = { en: string; np: string; ad: string }
+
+export const NepaliMonthsNameEn = NepaliMonthsData.map((month) => month.en)
