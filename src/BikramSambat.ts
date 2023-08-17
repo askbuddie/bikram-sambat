@@ -22,4 +22,13 @@ export default class BikramSambat {
     this.month = month
     this.day = day
   }
+
+  public getPreviousYear(): number {
+    return this.year - 1
+  }
+   
+  public getNextYear(): number {
+    return this.year + 1
+  }
+  
 }
