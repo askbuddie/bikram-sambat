@@ -24,11 +24,11 @@ export default class BikramSambat {
   }
 
   public getPreviousYear(): number {
-    return this.year - 1
+    return this.year? - 1 :NaN
   }
    
   public getNextYear(): number {
-    return this.year + 1
+    return this.year? + 1:NaN
   }
   
 }
