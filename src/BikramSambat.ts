@@ -23,18 +23,18 @@ export default class BikramSambat {
     this.month = month
     this.day = day
   }
-  public getPreviousMonth():Month | null {
-    if(!this.month){
+  public getPreviousMonth(): Month | null {
+    if (!this.month) {
       return null
     }
     const month = this.month === 1 ? 12 : this.month - 1
     return NepaliMonthsData[month - 1]
   }
-  public getNextMonth():Month | null{
-    if(!this.month){
+  public getNextMonth(): Month | null{
+    if (!this.month) {
       return null
     }
-    const month = (this.month + 1 )%12
+    const month = (this.month + 1 ) % 12
     return NepaliMonthsData[month - 1]
   }
  
