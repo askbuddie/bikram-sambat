@@ -1,3 +1,6 @@
+/**
+ * This includes the number of days in each month for each year from 1975 to 2100 BS.
+ */
 export const DaysInMonthsMappingData = {
   '1975': [31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
   '1976': [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
