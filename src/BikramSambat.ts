@@ -119,6 +119,29 @@ export default class BikramSambat {
     return adjustYear(totalMonths, 0)
   }
 
+  public addDays(days: number): BikramSambat {
+    if (this.day === undefined || this.month === undefined) {
+      return this
+    }
+    const totalDays = this.day + days
+    const adjustMonth = (
+      remainingDays: number,
+      monthsToAdd: number
+    ): BikramSambat => {
+      const daysInMonth = this.getDaysInMonth()
+      if (remainingDays > daysInMonth) {
+        return adjustMonth(remainingDays - daysInMonth, monthsToAdd + 1)
+      } else if (remainingDays <= 0) {
+        return adjustMonth(daysInMonth + remainingDays, monthsToAdd - 1)
+      } else {
+        this.day = remainingDays
+        this.addMonths(monthsToAdd)
+        return this
+      }
+    }
+    return adjustMonth(totalDays, 0)
+  }
+
   public getDaysInMonth(): number {
     if (this.month === undefined || this.year === undefined) {
       return NaN
@@ -143,28 +166,5 @@ export default class BikramSambat {
     }
     // has dep on .toGregorian()
     return ''
-  }
-
-  public addDays(days: number): BikramSambat {
-    if (this.day === undefined || this.month === undefined) {
-      return this
-    }
-    const totalDays = this.day + days
-    const adjustMonth = (
-      remainingDays: number,
-      monthsToAdd: number
-    ): BikramSambat => {
-      const daysInMonth = this.getDaysInMonth()
-      if (remainingDays > daysInMonth) {
-        return adjustMonth(remainingDays - daysInMonth, monthsToAdd + 1)
-      } else if (remainingDays <= 0) {
-        return adjustMonth(daysInMonth + remainingDays, monthsToAdd - 1)
-      } else {
-        this.day = remainingDays
-        this.addMonths(monthsToAdd)
-        return this
-      }
-    }
-    return adjustMonth(totalDays, 0)
   }
 }
