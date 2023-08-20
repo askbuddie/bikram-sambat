@@ -1,6 +1,8 @@
 import { format } from 'format'
 import { isDayValid, parse } from 'parser'
-import { DateFormat, InvalidDate } from 'data'
+import { DateFormat, InvalidDate, NewYearMappingData } from 'data'
+import { getDaysFromBsNewYear } from 'utils/getDaysFromBsNewYear'
+import { addDaysToGregorianDate } from 'utils/addDaysToGregorianDate'
 // import {
 //   NepaliDaysData,
 //   NepaliMonthsData,
@@ -87,4 +89,29 @@ export default class BikramSambat {
   public getNextYear(): number {
     return this.year ? this.year + 1 : NaN
   }
+
+  public toGregorian(): Date {
+    if (!this.year || !this.month || !this.day) {
+      return new Date()
+    }
+    const daysFromNewYear = getDaysFromBsNewYear(
+      this.year,
+      this.month,
+      this.day
+    )
+    const newYearDayAD = NewYearMappingData[this.year]
+    const gregorianDate = addDaysToGregorianDate(
+      new Date(newYearDayAD),
+      daysFromNewYear - 1
+    )
+    return gregorianDate
+  }
+  
+  public static toGregorian(
+    date: BikramSambat | string | undefined
+  ): Date {
+    const bsDate = new BikramSambat(date)    
+    return bsDate.toGregorian()
+  }
+
 }
