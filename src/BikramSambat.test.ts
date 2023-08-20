@@ -54,4 +54,53 @@ describe('BikramSambat Class', () => {
     const bikramSambat = new BikramSambat('2075-01-32')
     expect(bikramSambat.getDay()).toBe(NaN)
   })
+
+  it('should return previous year', () => {
+    const bikramSambat = new BikramSambat('2075-01-01')
+    expect(bikramSambat.getPreviousYear()).toBe(2074)
+  })
+
+  it('should return next year', () => {
+    const bikramSambat = new BikramSambat('2075-01-01')
+    expect(bikramSambat.getNextYear()).toBe(2076)
+  })
+
+  it('should return NaN for Invalid Date', () => {
+    const bikramSambat = new BikramSambat('2075-01-32')
+    expect(bikramSambat.getPreviousYear()).toBe(NaN)
+    expect(bikramSambat.getNextYear()).toBe(NaN)
+  })
+
+  it('should properly add years', () => {
+    const bikramSambat = new BikramSambat('2075-01-01')
+    const bikramSambat2 = new BikramSambat('2075-01-01')
+    expect(bikramSambat.addYears(5).toString()).toBe('2080-01-01')
+    expect(bikramSambat2.addYears(-10).toString()).toBe('2065-01-01')
+  })
+
+  it('should return Invalid Date for Invalid Date', () => {
+    const bikramSambat = new BikramSambat('2075-01-32')
+    expect(bikramSambat.addYears(5).toString()).toBe(InvalidDate)
+  })
+
+  it('should properly add months', () => {
+    const bikramSambat = new BikramSambat('2075-01-01')
+    const bikramSambat2 = new BikramSambat('2075-01-01')
+    const bikramSambat3 = new BikramSambat('2075-01-01')
+    expect(bikramSambat.addMonths(5).toString()).toBe('2075-06-01')
+    expect(bikramSambat2.addMonths(-10).toString()).toBe('2074-03-01')
+    expect(bikramSambat3.addMonths(-1).toString()).toBe('2074-12-01')
+  })
+
+  it('should return Invalid Date for Invalid Date', () => {
+    const bikramSambat = new BikramSambat('2075-01-32')
+    expect(bikramSambat.addMonths(5).toString()).toBe(InvalidDate)
+  })
+
+  it('should properly add days', () => {
+    const bikramSambat = new BikramSambat('2075-01-01')
+    const bikramSambat2 = new BikramSambat('2075-01-01')
+    expect(bikramSambat.addDays(5).toString()).toBe('2075-01-06')
+    expect(bikramSambat2.addDays(-10).toString()).toBe('2074-12-22')
+  })
 })
