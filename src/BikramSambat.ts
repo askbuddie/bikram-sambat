@@ -106,12 +106,38 @@ export default class BikramSambat {
     )
     return gregorianDate
   }
-  
-  public static toGregorian(
-    date: BikramSambat | string | undefined
-  ): Date {
-    const bsDate = new BikramSambat(date)    
+
+  public static toGregorian(date: BikramSambat | string | undefined): Date {
+    const bsDate = new BikramSambat(date)
     return bsDate.toGregorian()
   }
 
+  public static toBikramSambat(date: Date | string | undefined): BikramSambat {
+    if (!date) {
+      return new BikramSambat()
+    }
+    const gregorianDate = new Date(date)
+    const gregorianDateObj = {
+      year: gregorianDate.getFullYear(),
+      month: gregorianDate.getMonth() + 1,
+      day: gregorianDate.getDate()
+    }
+    const newYearDayAD1 = gregorianDateObj.year + 57
+
+    const newYearDayAD2 = NewYearMappingData[gregorianDateObj.year + 58]
+
+    // check which new year is closer to the given date
+    const daysFromNewYear1 = Math.abs(
+      (new Date(newYearDayAD1).getTime() - gregorianDate.getTime()) / 86400000
+    )
+    const daysFromNewYear2 = Math.abs(
+      (new Date(newYearDayAD2).getTime() - gregorianDate.getTime()) / 86400000
+    )
+    const newYearDayAD =
+      daysFromNewYear1 < daysFromNewYear2 ? newYearDayAD1 : newYearDayAD2
+    const daysFromNewYear =
+      daysFromNewYear1 < daysFromNewYear2 ? daysFromNewYear1 : daysFromNewYear2
+    console.log('daysFromNewYear', daysFromNewYear, newYearDayAD)
+    return new BikramSambat()
+  }
 }
