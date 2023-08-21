@@ -1,9 +1,9 @@
 import { format } from 'format'
 import { isDayValid, parse } from 'parser'
 import { DateFormat, InvalidDate } from 'data'
-
 import { NepaliDaysData } from 'data/nepali-days'
 import { NepaliMonthsData } from 'data/nepali-months'
+import { Month } from 'data/nepali-months'
 // import {
 //   NepaliDaysData,
 //   NepaliMonthsData,
@@ -67,7 +67,7 @@ export default class BikramSambat {
     return format(this, formatStr)
   }
 
-  toString(): string {
+  public toString(): string {
     if (
       this.year === undefined ||
       this.month === undefined ||
@@ -90,7 +90,23 @@ export default class BikramSambat {
   public getNextYear(): number {
     return this.year ? this.year + 1 : NaN
   }
-
+  
+  public getPreviousMonth(): Month | null {
+    if (!this.month) {
+      return null
+    }
+    const month = this.month === 1 ? 12 : this.month - 1
+    return NepaliMonthsData[month - 1]
+  }
+  
+  public getNextMonth(): Month | null{
+    if (!this.month) {
+      return null
+    }
+    const month = (this.month + 1 ) % 12
+    return NepaliMonthsData[month - 1]
+  }
+ 
   public getWeekdayNames(language: string): string[] {
     const languageKey = language === 'np' ? 'np' : 'en'
     return NepaliDaysData.map((day) => day[languageKey])
