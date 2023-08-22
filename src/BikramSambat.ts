@@ -3,15 +3,16 @@ import { isDayValid, parse } from 'parser'
 import { DateFormat, InvalidDate } from 'data'
 import {
   // NepaliDaysData,
-  // NepaliMonthsData,
   // NewYearMappingData,
+  NepaliMonthsData,
   DaysInMonthsMappingData
 } from './data'
+import { Month } from 'data/nepali-months'
 
 export default class BikramSambat {
   // private readonly nepaliDays = NepaliDaysData
-  // private readonly nepaliMonths = NepaliMonthsData
   // private readonly newYearMap = NewYearMappingData
+  private static readonly nepaliMonths = NepaliMonthsData
   private static readonly daysInMonthMap = DaysInMonthsMappingData
   private static readonly MONTHS_IN_A_YEAR = 12
   private static readonly DAYS_IN_A_LEAP_YEAR = 366
@@ -233,5 +234,21 @@ export default class BikramSambat {
     }
     // has dep on .toGregorian()
     return ''
+  }
+
+  public getPreviousMonth(): Month | null {
+    if (!this.month) {
+      return null
+    }
+    const month = this.month === 1 ? 12 : this.month - 1
+    return BikramSambat.nepaliMonths[month - 1]
+  }
+
+  public getNextMonth(): Month | null {
+    if (!this.month) {
+      return null
+    }
+    const month = (this.month + 1) % 12
+    return BikramSambat.nepaliMonths[month - 1]
   }
 }
