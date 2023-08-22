@@ -2,12 +2,14 @@ import { format } from 'format'
 import { isDayValid, parse } from 'parser'
 import { DateFormat, InvalidDate } from 'data'
 import {
-  // NepaliDaysData,
+  NepaliDaysData,
   // NewYearMappingData,
   NepaliMonthsData,
   DaysInMonthsMappingData
 } from './data'
 import { Month } from 'data/nepali-months'
+
+type LanguageCode = 'en' | 'np'
 
 export default class BikramSambat {
   // private readonly nepaliDays = NepaliDaysData
@@ -250,5 +252,13 @@ export default class BikramSambat {
     }
     const month = (this.month + 1) % 12
     return BikramSambat.nepaliMonths[month - 1]
+  }
+
+  public getWeekdayNames(language?: LanguageCode): string[] {
+    return NepaliDaysData.map((day) => day[language ?? 'np'])
+  }
+
+  public getMonthNames(language?: LanguageCode): string[] {
+    return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
 }
