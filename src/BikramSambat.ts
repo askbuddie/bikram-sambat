@@ -180,6 +180,7 @@ export default class BikramSambat {
       daysFromNewYear1 < daysFromNewYear2 ? daysFromNewYear1 : daysFromNewYear2
     console.log('daysFromNewYear', daysFromNewYear, newYearDayAD)
     return new BikramSambat()
+  }
   /**
    * Adds the given number of years to the BikramSambat instance.
    * @param years - The number of years to add.

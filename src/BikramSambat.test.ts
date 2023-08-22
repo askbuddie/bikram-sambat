@@ -73,6 +73,7 @@ describe('BikramSambat Class', () => {
       const bikramSambat = new BikramSambat(bsDate)
       expect(bikramSambat.toGregorian().toISOString().slice(0, 10)).toBe(adDate)
     })
+  })
   it('should return previous year', () => {
     const bikramSambat = new BikramSambat('2075-01-01')
     expect(bikramSambat.getPreviousYear()).toBe(2074)
