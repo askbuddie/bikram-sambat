@@ -9,6 +9,8 @@ import {
 } from './data'
 import { Month } from 'data/nepali-months'
 
+type LanguageCode = 'en' | 'np'
+
 export default class BikramSambat {
   // private readonly nepaliDays = NepaliDaysData
   // private readonly newYearMap = NewYearMappingData
@@ -252,15 +254,11 @@ export default class BikramSambat {
     return BikramSambat.nepaliMonths[month - 1]
   }
 
-  public getWeekdayNames(language: 'np' | 'en'): string[] {
+  public getWeekdayNames(language?: LanguageCode): string[] {
     return NepaliDaysData.map((day) => day[language ?? 'np'])
   }
 
-  public getMonthNamesNepali(language: 'np' | 'en'): string[] {
+  public getMonthNames(language?: LanguageCode): string[] {
     return NepaliMonthsData.map((month) => month[language ?? 'np'])
-  }
-
-  public getMonthNamesEnglish(): string[] {
-    return NepaliMonthsData.map((month) => month.en)
   }
 }
