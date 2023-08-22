@@ -92,6 +92,11 @@ describe('BikramSambat Class', () => {
     expect(bikramSambat3.addMonths(-1).toString()).toBe('2074-12-01')
   })
 
+  it('should properly handle days if day is greater than number of days in given month', () => {
+    const bikramSambat = new BikramSambat('2075-03-32')
+    expect(bikramSambat.addMonths(1).toString()).toBe('2075-04-31')
+  })
+
   it('should return Invalid Date for Invalid Date', () => {
     const bikramSambat = new BikramSambat('2075-01-32')
     expect(bikramSambat.addMonths(5).toString()).toBe(InvalidDate)
