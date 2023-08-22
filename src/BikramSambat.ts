@@ -1,17 +1,12 @@
 import { format } from 'format'
 import { isDayValid, parse } from 'parser'
 import { DateFormat, InvalidDate } from 'data'
-<<<<<<< HEAD
-import { NepaliDaysData } from 'data/nepali-days'
-import { NepaliMonthsData } from 'data/nepali-months'
-=======
 import {
-  // NepaliDaysData,
+  NepaliDaysData,
   // NewYearMappingData,
   NepaliMonthsData,
   DaysInMonthsMappingData
 } from './data'
->>>>>>> 0ed6eb64573f348fb07f948abc9cd59d6d77b663
 import { Month } from 'data/nepali-months'
 
 export default class BikramSambat {
@@ -256,21 +251,16 @@ export default class BikramSambat {
     const month = (this.month + 1) % 12
     return BikramSambat.nepaliMonths[month - 1]
   }
-<<<<<<< HEAD
- 
-  public getWeekdayNames(language: string): string[] {
-    const languageKey = language === 'np' ? 'np' : 'en'
-    return NepaliDaysData.map((day) => day[languageKey])
+
+  public getWeekdayNames(language: 'np' | 'en'): string[] {
+    return NepaliDaysData.map((day) => day[language ?? 'np'])
   }
 
-  public getMonthNamesNepali(language: string): string[] {
-    const languageKey = language === 'np' ? 'np' : 'en'
-    return NepaliMonthsData.map((month) => month[languageKey])
+  public getMonthNamesNepali(language: 'np' | 'en'): string[] {
+    return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
 
   public getMonthNamesEnglish(): string[] {
     return NepaliMonthsData.map((month) => month.en)
   }
-=======
->>>>>>> 0ed6eb64573f348fb07f948abc9cd59d6d77b663
 }
