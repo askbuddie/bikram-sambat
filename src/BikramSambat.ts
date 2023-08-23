@@ -261,4 +261,99 @@ export default class BikramSambat {
   public getMonthNames(language?: LanguageCode): string[] {
     return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
+
+  public isSameyear(date: BikramSambat): boolean {
+    if (this.toString() === InvalidDate) {
+      return false
+    }
+    if (this.year === date.getYear()) {
+      return true
+    }
+    return false
+  }
+
+  public isSameMonth(date: BikramSambat): boolean {
+    if (this.toString() === InvalidDate) {
+      return false
+    }
+    if (this.year === date.getYear() && this.month === date.getMonth()) {
+      return true
+    }
+    return false
+  }
+
+  public isSameDay(date: BikramSambat): boolean {
+    if (this.toString() === InvalidDate) {
+      return false
+    }
+    if (
+      this.year === date.getYear() &&
+      this.month === date.getMonth() &&
+      this.day === date.getDay()
+    ) {
+      return true
+    }
+    return false
+  }
+
+  /**
+   * Returns true if the given date is after the current date.
+   * @param date - BikramSambat
+   * @returns boolean
+   * @example
+   * const date = new BikramSambat('2077-01-01')
+   * const date2 = new BikramSambat('2077-01-02')
+   * date.isAfter(date2) // true
+   */
+  public isAfter(date: BikramSambat): boolean {
+    if (
+      this.year === undefined ||
+      this.month === undefined ||
+      this.day === undefined ||
+      date.toString() === InvalidDate
+    ) {
+      return false
+    }
+    if (this.year < date.getYear()) {
+      return true
+    } else if (this.year > date.getYear()) {
+      return false
+    }
+
+    if (this.month < date.getMonth()) {
+      return true
+    } else if (this.month > date.getMonth()) {
+      return false
+    }
+
+    if (this.day < date.getDay()) {
+      return true
+    } else if (this.day > date.getDay()) {
+      return false
+    }
+
+    return false // Dates are equal
+  }
+
+  /**
+   * Returns true if the given date is before the current date.
+   * @param date
+   * @returns boolean
+   * @example
+   * const date = new BikramSambat('2077-01-01')
+   * const date2 = new BikramSambat('2077-01-02')
+   * date.isBefore(date2) // false
+   */
+  public isBefore(date: BikramSambat): boolean {
+    if (
+      this.year === undefined ||
+      this.month === undefined ||
+      this.day === undefined ||
+      date.toString() === InvalidDate ||
+      this.isSameDay(date)
+    ) {
+      return false
+    }
+    return !this.isAfter(date)
+  }
 }

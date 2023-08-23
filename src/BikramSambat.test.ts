@@ -108,4 +108,47 @@ describe('BikramSambat Class', () => {
     expect(bikramSambat.addDays(5).toString()).toBe('2075-01-06')
     expect(bikramSambat2.addDays(-10).toString()).toBe('2074-12-22')
   })
+
+  it('should properly return isAfter value', () => {
+    const sampleData = [
+      // [date1, date2, expected] - expected is true if date2 is after date1
+      ['2073-01-01', '2073-01-02', true],
+      ['2073-01-01', '2073-01-01', false], // Equal dates
+      ['2073-01-01', '2074-06-15', true], // Different years, months, and days
+      ['2073-01-01', '2073-06-15', true], // Different months and days
+      ['2073-01-01', '2073-01-15', true], // Different days in the same month
+      ['2073-01-01', '2072-12-31', false], // Previous year but same month and day
+      ['2073-01-01', '2073-02-01', true], // Next month in the same year
+      ['2073-01-01', '2072-12-01', false], // Previous month in the same year
+      ['2073-01-01', '2072-12-01', false], // Previous month in the same year
+      ['2073-01-01', '2072-01-01', false], // Previous year
+      ['2073-01-01', '2074-01-01', true] // Next year
+    ]
+    sampleData.forEach(([date1, date2, expected]) => {
+      const bikramSambat1 = new BikramSambat(date1 as string)
+      const bikramSambat2 = new BikramSambat(date2 as string)
+      expect(bikramSambat1.isAfter(bikramSambat2)).toBe(expected)
+    })
+  })
+  it('should properly return isBefore value', () => {
+    const sampleData = [
+      // [date1, date2, expected] - expected is true if date2 is after date1
+      ['2073-01-01', '2073-01-02', false],
+      ['2073-01-01', '2073-01-01', false], // Equal dates
+      ['2073-01-01', '2074-06-15', false], // Different years, months, and days
+      ['2073-01-01', '2073-06-15', false], // Different months and days
+      ['2073-01-01', '2073-01-15', false], // Different days in the same month
+      ['2073-01-01', '2072-12-30', true], // Previous year but same month and day
+      ['2073-01-01', '2073-02-01', false], // Next month in the same year
+      ['2073-01-01', '2072-12-01', true], // Previous month in the same year
+      ['2073-01-01', '2072-12-01', true], // Previous month in the same year
+      ['2073-01-01', '2072-01-01', true], // Previous year
+      ['2073-01-01', '2074-01-01', false] // Next year
+    ]
+    sampleData.forEach(([date1, date2, expected]) => {
+      const bikramSambat1 = new BikramSambat(date1 as string)
+      const bikramSambat2 = new BikramSambat(date2 as string)
+      expect(bikramSambat1.isBefore(bikramSambat2)).toBe(expected)
+    })
+  })
 })
