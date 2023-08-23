@@ -1,17 +1,11 @@
 import { format } from 'format'
 import { isDayValid, parse } from 'parser'
-import { DateFormat, InvalidDate, NewYearMappingData } from 'data'
+import { DateFormat, InvalidDate } from 'data'
 import { getDaysFromBsNewYear } from 'utils/getDaysFromBsNewYear'
 import { addDaysToGregorianDate } from 'utils/addDaysToGregorianDate'
-// import {
-//   NepaliDaysData,
-//   NepaliMonthsData,
-//   NewYearMappingData,
-//   DaysInMonthsMappingData
-// } from './data'
 import {
   // NepaliDaysData,
-  // NewYearMappingData,
+  NewYearMappingData,
   NepaliMonthsData,
   DaysInMonthsMappingData
 } from './data'
@@ -19,7 +13,7 @@ import { Month } from 'data/nepali-months'
 
 export default class BikramSambat {
   // private readonly nepaliDays = NepaliDaysData
-  // private readonly newYearMap = NewYearMappingData
+  private static readonly newYearMap = NewYearMappingData
   private static readonly nepaliMonths = NepaliMonthsData
   private static readonly daysInMonthMap = DaysInMonthsMappingData
   private static readonly MONTHS_IN_A_YEAR = 12
@@ -158,29 +152,29 @@ export default class BikramSambat {
       return new BikramSambat()
     }
     const gregorianDate = new Date(date)
-    const gregorianDateObj = {
-      year: gregorianDate.getFullYear(),
-      month: gregorianDate.getMonth() + 1,
-      day: gregorianDate.getDate()
-    }
-    const newYearDayAD1 = gregorianDateObj.year + 57
-
-    const newYearDayAD2 = NewYearMappingData[gregorianDateObj.year + 58]
-
-    // check which new year is closer to the given date
-    const daysFromNewYear1 = Math.abs(
-      (new Date(newYearDayAD1).getTime() - gregorianDate.getTime()) / 86400000
+    const newYearDate = Object.values(BikramSambat.newYearMap).filter(
+      (newYearDate, currentIndex) => {
+        const currDate = new Date(newYearDate)
+        const nextDate = new Date(
+          Object.values(BikramSambat.newYearMap)[currentIndex + 1]
+        )
+        if (currDate <= gregorianDate && gregorianDate < nextDate) {
+          return true
+        }
+        return false
+      }
     )
-    const daysFromNewYear2 = Math.abs(
-      (new Date(newYearDayAD2).getTime() - gregorianDate.getTime()) / 86400000
+    const bsYear = Object.keys(BikramSambat.newYearMap).find(
+      (key) => BikramSambat.newYearMap[key] === newYearDate[0]
     )
-    const newYearDayAD =
-      daysFromNewYear1 < daysFromNewYear2 ? newYearDayAD1 : newYearDayAD2
-    const daysFromNewYear =
-      daysFromNewYear1 < daysFromNewYear2 ? daysFromNewYear1 : daysFromNewYear2
-    console.log('daysFromNewYear', daysFromNewYear, newYearDayAD)
-    return new BikramSambat()
+    const daysFromNewYear = Math.ceil(
+      (gregorianDate.getTime() - new Date(newYearDate[0]).getTime()) / 86400000
+    )
+    const bsDate = new BikramSambat(`${bsYear}-01-01`)
+    bsDate.addDays(daysFromNewYear)
+    return bsDate
   }
+
   /**
    * Adds the given number of years to the BikramSambat instance.
    * @param years - The number of years to add.
@@ -242,22 +236,20 @@ export default class BikramSambat {
       return this
     }
     const totalDays = this.day + days
-    const adjustMonth = (
-      remainingDays: number,
-      monthsToAdd: number
-    ): BikramSambat => {
+    const adjustMonth = (remainingDays: number): BikramSambat => {
       const daysInMonth = this.getDaysInMonth()
       if (remainingDays > daysInMonth) {
-        return adjustMonth(remainingDays - daysInMonth, monthsToAdd + 1)
+        this.addMonths(1)
+        return adjustMonth(remainingDays - daysInMonth)
       } else if (remainingDays <= 0) {
-        return adjustMonth(daysInMonth + remainingDays, monthsToAdd - 1)
+        this.addMonths(-1)
+        return adjustMonth(daysInMonth + remainingDays)
       } else {
         this.day = remainingDays
-        this.addMonths(monthsToAdd)
         return this
       }
     }
-    return adjustMonth(totalDays, 0)
+    return adjustMonth(totalDays)
   }
 
   /**
