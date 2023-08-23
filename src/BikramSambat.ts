@@ -7,13 +7,12 @@ import {
   NepaliDaysData,
   NewYearMappingData,
   NepaliMonthsData,
-  DaysInMonthsMappingData
+  DaysInMonthsMappingData,
+  type LanguageCode
 } from './data'
-import { Month } from 'data/nepali-months'
+import { type Month } from 'data/nepali-months'
 import { getDaysBetweenTwoAdDates } from 'utils/getDaysBetweenTwoAdDates'
 import { getNewYearDateInfo } from 'utils/getNewYearDateInfo'
-
-type LanguageCode = 'en' | 'np'
 
 export default class BikramSambat {
   private static readonly nepaliDays = NepaliDaysData
@@ -272,14 +271,13 @@ export default class BikramSambat {
     return daysInCurrentYear === BikramSambat.DAYS_IN_A_LEAP_YEAR
   }
 
-  public getDayOfWeek(): string {
+  public getDayOfWeek(language?: LanguageCode): string {
     if (this.year === undefined || this.month === undefined) {
       return InvalidDate
     }
-    const date = this.toGregorian()
-    const dayOfWeek = date.getDay()
-
-    return BikramSambat.nepaliDays[dayOfWeek].en
+    const dateInGregorian = this.toGregorian()
+    const dayOfWeek = dateInGregorian.getDay()
+    return BikramSambat.getWeekdayNames(language ?? 'np')[dayOfWeek]
   }
 
   public getPreviousMonth(): Month | null {
@@ -298,11 +296,11 @@ export default class BikramSambat {
     return BikramSambat.nepaliMonths[month - 1]
   }
 
-  public getWeekdayNames(language?: LanguageCode): string[] {
+  public static getWeekdayNames(language?: LanguageCode): string[] {
     return NepaliDaysData.map((day) => day[language ?? 'np'])
   }
 
-  public getMonthNames(language?: LanguageCode): string[] {
+  public static getMonthNames(language?: LanguageCode): string[] {
     return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
 }

@@ -1,4 +1,4 @@
-export { NepaliDaysData } from './nepali-days'
+export { NepaliDaysData, type LanguageCode } from './nepali-days'
 export { NepaliMonthsData, NepaliMonthsNameEn } from './nepali-months'
 export { NewYearMappingData } from './new-year-mapping'
 export { DaysInMonthsMappingData } from './days-in-month-mapping'
