@@ -271,13 +271,13 @@ export default class BikramSambat {
     return daysInCurrentYear === BikramSambat.DAYS_IN_A_LEAP_YEAR
   }
 
-  public getDayOfWeek(language?: LanguageCode): string {
+  public getDayOfWeek(): number {
     if (this.year === undefined || this.month === undefined) {
-      return InvalidDate
+      return NaN
     }
     const dateInGregorian = this.toGregorian()
     const dayOfWeek = dateInGregorian.getDay()
-    return BikramSambat.getWeekdayNames(language ?? 'np')[dayOfWeek]
+    return dayOfWeek
   }
 
   public getPreviousMonth(): Month | null {
@@ -297,7 +297,7 @@ export default class BikramSambat {
   }
 
   public static getWeekdayNames(language?: LanguageCode): string[] {
-    return NepaliDaysData.map((day) => day[language ?? 'np'])
+    return BikramSambat.nepaliDays.map((day) => day[language ?? 'np'])
   }
 
   public static getMonthNames(language?: LanguageCode): string[] {

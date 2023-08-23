@@ -142,4 +142,9 @@ describe('BikramSambat Class', () => {
     expect(bikramSambat2.addDays(-10).toString()).toBe('2074-12-22')
     expect(bikramSambat3.addDays(278).toString()).toBe('2072-10-03')
   })
+
+  it("should return proper weekDay for BikramSambat's date", () => {
+    const bikramSambat = new BikramSambat('2072-10-03')
+    expect(bikramSambat.getDayOfWeek()).toBe(0)
+  })
 })
