@@ -74,6 +74,19 @@ describe('BikramSambat Class', () => {
       expect(bikramSambat.toGregorian().toISOString().slice(0, 10)).toBe(adDate)
     })
   })
+  it('should properly convert to BikramSambat Date', () => {
+    const sampleData = [
+      ['2075-01-01', '2018-04-14'],
+      ['2072-10-03', '2016-01-17'],
+      ['2069-11-30', '2013-03-13'],
+      ['2082-10-30', '2026-02-12'],
+      ['2086-12-30', '2030-04-13'],
+      ['2089-01-29', '2032-05-13']
+    ]
+    sampleData.forEach(([bsDate, adDate]) => {
+      expect(BikramSambat.toBikramSambat(adDate).toString()).toBe(bsDate)
+    })
+  })
   it('should return previous year', () => {
     const bikramSambat = new BikramSambat('2075-01-01')
     expect(bikramSambat.getPreviousYear()).toBe(2074)
@@ -124,7 +137,9 @@ describe('BikramSambat Class', () => {
   it('should properly add days', () => {
     const bikramSambat = new BikramSambat('2075-01-01')
     const bikramSambat2 = new BikramSambat('2075-01-01')
+    const bikramSambat3 = new BikramSambat('2072-01-01')
     expect(bikramSambat.addDays(5).toString()).toBe('2075-01-06')
     expect(bikramSambat2.addDays(-10).toString()).toBe('2074-12-22')
+    expect(bikramSambat3.addDays(278).toString()).toBe('2072-10-03')
   })
 })

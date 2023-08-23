@@ -4,15 +4,17 @@ import { DateFormat, InvalidDate } from 'data'
 import { getDaysFromBsNewYear } from 'utils/getDaysFromBsNewYear'
 import { addDaysToGregorianDate } from 'utils/addDaysToGregorianDate'
 import {
-  // NepaliDaysData,
+  NepaliDaysData,
   NewYearMappingData,
   NepaliMonthsData,
   DaysInMonthsMappingData
 } from './data'
 import { Month } from 'data/nepali-months'
+import { getDaysBetweenTwoAdDates } from 'utils/getDaysBetweenTwoAdDates'
+import { getNewYearDateInfo } from 'utils/getNewYearDateInfo'
 
 export default class BikramSambat {
-  // private readonly nepaliDays = NepaliDaysData
+  private static readonly nepaliDays = NepaliDaysData
   private static readonly newYearMap = NewYearMappingData
   private static readonly nepaliMonths = NepaliMonthsData
   private static readonly daysInMonthMap = DaysInMonthsMappingData
@@ -134,7 +136,7 @@ export default class BikramSambat {
       this.month,
       this.day
     )
-    const newYearDayAD = NewYearMappingData[this.year]
+    const newYearDayAD = BikramSambat.newYearMap[this.year]
     const gregorianDate = addDaysToGregorianDate(
       new Date(newYearDayAD),
       daysFromNewYear - 1
@@ -152,23 +154,13 @@ export default class BikramSambat {
       return new BikramSambat()
     }
     const gregorianDate = new Date(date)
-    const newYearDate = Object.values(BikramSambat.newYearMap).filter(
-      (newYearDate, currentIndex) => {
-        const currDate = new Date(newYearDate)
-        const nextDate = new Date(
-          Object.values(BikramSambat.newYearMap)[currentIndex + 1]
-        )
-        if (currDate <= gregorianDate && gregorianDate < nextDate) {
-          return true
-        }
-        return false
-      }
-    )
-    const bsYear = Object.keys(BikramSambat.newYearMap).find(
-      (key) => BikramSambat.newYearMap[key] === newYearDate[0]
-    )
-    const daysFromNewYear = Math.ceil(
-      (gregorianDate.getTime() - new Date(newYearDate[0]).getTime()) / 86400000
+    if (gregorianDate.toString() === InvalidDate) {
+      return new BikramSambat()
+    }
+    const { newYearDate, bsYear } = getNewYearDateInfo(gregorianDate)
+    const daysFromNewYear = getDaysBetweenTwoAdDates(
+      gregorianDate,
+      new Date(newYearDate)
     )
     const bsDate = new BikramSambat(`${bsYear}-01-01`)
     bsDate.addDays(daysFromNewYear)
@@ -282,8 +274,10 @@ export default class BikramSambat {
     if (this.year === undefined || this.month === undefined) {
       return InvalidDate
     }
-    // has dep on .toGregorian()
-    return ''
+    const date = this.toGregorian()
+    const dayOfWeek = date.getDay()
+
+    return BikramSambat.nepaliDays[dayOfWeek].en
   }
 
   public getPreviousMonth(): Month | null {
