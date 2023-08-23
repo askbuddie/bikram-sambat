@@ -13,6 +13,8 @@ import { Month } from 'data/nepali-months'
 import { getDaysBetweenTwoAdDates } from 'utils/getDaysBetweenTwoAdDates'
 import { getNewYearDateInfo } from 'utils/getNewYearDateInfo'
 
+type LanguageCode = 'en' | 'np'
+
 export default class BikramSambat {
   private static readonly nepaliDays = NepaliDaysData
   private static readonly newYearMap = NewYearMappingData
@@ -294,5 +296,13 @@ export default class BikramSambat {
     }
     const month = (this.month + 1) % 12
     return BikramSambat.nepaliMonths[month - 1]
+  }
+
+  public getWeekdayNames(language?: LanguageCode): string[] {
+    return NepaliDaysData.map((day) => day[language ?? 'np'])
+  }
+
+  public getMonthNames(language?: LanguageCode): string[] {
+    return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
 }
