@@ -262,7 +262,7 @@ export default class BikramSambat {
     return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
 
-  public isSameyear(date: BikramSambat): boolean {
+  public isSameYear(date: BikramSambat): boolean {
     if (this.toString() === InvalidDate) {
       return false
     }
@@ -291,6 +291,36 @@ export default class BikramSambat {
       this.month === date.getMonth() &&
       this.day === date.getDay()
     ) {
+      return true
+    }
+    return false
+  }
+
+  public getWeekStartDate(): BikramSambat {
+    if (this.toString() === InvalidDate) {
+      return this
+    }
+    const dayOfWeek = this.getDayOfWeek()
+    const startOfWeek = this.addDays(-dayOfWeek)
+    return startOfWeek
+  }
+
+  public getWeekEndDate(): BikramSambat {
+    if (this.toString() === InvalidDate) {
+      return this
+    }
+    const dayOfWeek = this.getDayOfWeek()
+    const endOfWeek = this.addDays(6 - dayOfWeek)
+    return endOfWeek
+  }
+
+  public isSameWeek(date: BikramSambat): boolean {
+    if (this.toString() === InvalidDate) {
+      return false
+    }
+    const weekStartDate = this.getWeekStartDate()
+    const weekEndDate = this.getWeekEndDate()
+    if (date.isAfter(weekStartDate) && date.isBefore(weekEndDate)) {
       return true
     }
     return false
