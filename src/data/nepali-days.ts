@@ -1,11 +1,11 @@
 export const NepaliDaysData = [
-  { en: 'Sunday', np: 'आइतबार' },
-  { en: 'Monday', np: 'सोमबार' },
-  { en: 'Tuesday', np: 'मंगलबार' },
-  { en: 'Wednesday', np: 'बुधबार' },
-  { en: 'Thursday', np: 'बिहिबार' },
-  { en: 'Friday', np: 'शुक्रबार' },
-  { en: 'Saturday', np: 'शनिबार' }
+  { index: 1, en: 'Sunday', np: 'आइतबार' },
+  { index: 2, en: 'Monday', np: 'सोमबार' },
+  { index: 3, en: 'Tuesday', np: 'मंगलबार' },
+  { index: 4, en: 'Wednesday', np: 'बुधबार' },
+  { index: 5, en: 'Thursday', np: 'बिहिबार' },
+  { index: 6, en: 'Friday', np: 'शुक्रबार' },
+  { index: 7, en: 'Saturday', np: 'शनिबार' }
 ] as ReadonlyArray<Day>
 
-type Day = { en: string; np: string }
+export type Day = { index: number; en: string; np: string }

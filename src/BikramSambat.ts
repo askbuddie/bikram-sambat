@@ -1,5 +1,6 @@
 
-import { Month } from 'data/nepali-months'
+
+import { Day } from 'data/nepali-days';
 import {
   NepaliDaysData,
   NepaliMonthsData,
@@ -23,19 +24,21 @@ export default class BikramSambat {
     this.month = month
     this.day = day
   }
-  public getPreviousMonth(): Month | null {
-    if (!this.month) {
+
+  public getPreviousDay() : Day | null {
+    if(!this.day){
       return null
     }
-    const month = this.month === 1 ? 12 : this.month - 1
-    return NepaliMonthsData[month - 1]
+    const day = this.day === 1 ? 7 : (this.day - 1)
+    return NepaliDaysData[day - 1]
   }
-  public getNextMonth(): Month | null{
-    if (!this.month) {
+
+  public getNextDay(): Day | null {
+    if(!this.day){
       return null
     }
-    const month = (this.month + 1 ) % 12
-    return NepaliMonthsData[month - 1]
+    const day = (this.day + 1) % 7
+    return NepaliDaysData[day - 1]
   }
  
 }
