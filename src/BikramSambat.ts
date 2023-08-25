@@ -261,4 +261,14 @@ export default class BikramSambat {
   public getMonthNames(language?: LanguageCode): string[] {
     return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
+
+  public getPreviousDay(): BikramSambat {
+    const currentDate = new BikramSambat(this)
+    return currentDate.addDays(-1)
+  }
+  public getNextDay(): BikramSambat {
+    const currentDate = new BikramSambat(this)
+    return currentDate.addDays(1)
+  }
+
 }
