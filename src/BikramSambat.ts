@@ -344,8 +344,9 @@ export default class BikramSambat {
     if (this.toString() === InvalidDate) {
       return this
     }
-    const dayOfWeek = this.getDayOfWeek()
-    const startOfWeek = this.addDays(-dayOfWeek)
+    const currentDate = new BikramSambat(this)
+    const dayOfWeek = currentDate.getDayOfWeek()
+    const startOfWeek = currentDate.addDays(-dayOfWeek)
     return startOfWeek
   }
 
@@ -353,8 +354,9 @@ export default class BikramSambat {
     if (this.toString() === InvalidDate) {
       return this
     }
-    const dayOfWeek = this.getDayOfWeek()
-    const endOfWeek = this.addDays(6 - dayOfWeek)
+    const currentDate = new BikramSambat(this)
+    const dayOfWeek = currentDate.getDayOfWeek()
+    const endOfWeek = currentDate.addDays(6 - dayOfWeek)
     return endOfWeek
   }
 
@@ -364,7 +366,7 @@ export default class BikramSambat {
     }
     const weekStartDate = this.getWeekStartDate()
     const weekEndDate = this.getWeekEndDate()
-    if (date.isAfter(weekStartDate) && date.isBefore(weekEndDate)) {
+    if (weekStartDate.isAfter(date) && weekEndDate.isBefore(date)) {
       return true
     }
     return false

@@ -67,7 +67,7 @@ describe('BikramSambat Class', () => {
     ['2082-10-30', '2026-02-12'],
     ['2086-12-30', '2030-04-13'],
     ['2089-01-29', '2032-05-13'],
-    ['2080-05-08', '2023-08-25'],
+    ['2080-05-08', '2023-08-25']
   ]
   it('should properly convert to Gregorian Date', () => {
     sampleData.forEach(([bsDate, adDate]) => {
@@ -80,7 +80,7 @@ describe('BikramSambat Class', () => {
       expect(BikramSambat.toBikramSambat(adDate).toString()).toBe(bsDate)
     })
   })
-  
+
   it('should return Invalid Date for Invalid Date', () => {
     const bikramSambat = new BikramSambat('2075-01-32')
     const gregorianDate = new Date(InvalidDate)
@@ -149,6 +149,17 @@ describe('BikramSambat Class', () => {
   it("should return proper weekDay for BikramSambat's date", () => {
     const bikramSambat = new BikramSambat('2072-10-03')
     expect(bikramSambat.getDayOfWeek()).toBe(0)
+  })
+
+  it('should properly return startOfWeek, endOfWeek', () => {
+    const bikramSambat = new BikramSambat('2080-05-07')
+    expect(bikramSambat.getWeekStartDate().toString()).toBe('2080-05-03')
+    expect(bikramSambat.getWeekEndDate().toString()).toBe('2080-05-09')
+  })
+  it('should properly check if two date are in same week', () => {
+    const bikramSambat = new BikramSambat('2080-05-07')
+    const bikramSambat2 = new BikramSambat('2080-05-06')
+    expect(bikramSambat.isSameWeek(bikramSambat2)).toBe(true)
   })
 
   it('should properly return isAfter value', () => {
