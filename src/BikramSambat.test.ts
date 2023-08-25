@@ -59,34 +59,37 @@ describe('BikramSambat Class', () => {
     const bikramSambat = new BikramSambat('2075-13-01')
     expect(bikramSambat.getMonth()).toBe(NaN)
   })
-
+  // sampleData = [bsDate, adDate]
+  const sampleData = [
+    ['2075-01-01', '2018-04-14'],
+    ['2072-10-03', '2016-01-17'],
+    ['2069-11-30', '2013-03-13'],
+    ['2082-10-30', '2026-02-12'],
+    ['2086-12-30', '2030-04-13'],
+    ['2089-01-29', '2032-05-13'],
+    ['2080-05-08', '2023-08-25'],
+  ]
   it('should properly convert to Gregorian Date', () => {
-    const sampleData = [
-      ['2075-01-01', '2018-04-14'],
-      ['2072-10-03', '2016-01-17'],
-      ['2069-11-30', '2013-03-13'],
-      ['2082-10-30', '2026-02-12'],
-      ['2086-12-30', '2030-04-13'],
-      ['2089-01-29', '2032-05-13']
-    ]
     sampleData.forEach(([bsDate, adDate]) => {
       const bikramSambat = new BikramSambat(bsDate)
       expect(bikramSambat.toGregorian().toISOString().slice(0, 10)).toBe(adDate)
     })
   })
   it('should properly convert to BikramSambat Date', () => {
-    const sampleData = [
-      ['2075-01-01', '2018-04-14'],
-      ['2072-10-03', '2016-01-17'],
-      ['2069-11-30', '2013-03-13'],
-      ['2082-10-30', '2026-02-12'],
-      ['2086-12-30', '2030-04-13'],
-      ['2089-01-29', '2032-05-13']
-    ]
     sampleData.forEach(([bsDate, adDate]) => {
       expect(BikramSambat.toBikramSambat(adDate).toString()).toBe(bsDate)
     })
   })
+  
+  it('should return Invalid Date for Invalid Date', () => {
+    const bikramSambat = new BikramSambat('2075-01-32')
+    const gregorianDate = new Date(InvalidDate)
+    expect(bikramSambat.toGregorian().toString()).toBe(InvalidDate)
+    expect(BikramSambat.toBikramSambat(gregorianDate).toString()).toBe(
+      InvalidDate
+    )
+  })
+
   it('should return previous year', () => {
     const bikramSambat = new BikramSambat('2075-01-01')
     expect(bikramSambat.getPreviousYear()).toBe(2074)

@@ -48,9 +48,11 @@ export default class BikramSambat {
       this.month = dateStr.getMonth()
       this.day = dateStr.getDay()
     } else {
-      this.year = undefined
-      this.month = undefined
-      this.day = undefined
+      const currentDate = new Date().toISOString().slice(0, 10)
+      const currentBsDate = BikramSambat.toBikramSambat(currentDate)
+      this.year = currentBsDate.getYear()
+      this.month = currentBsDate.getMonth()
+      this.day = currentBsDate.getDay()
     }
   }
 
@@ -130,7 +132,7 @@ export default class BikramSambat {
 
   public toGregorian(): Date {
     if (!this.year || !this.month || !this.day) {
-      return new Date()
+      return new Date(InvalidDate)
     }
     const daysFromNewYear = getDaysFromBsNewYear(
       this.year,
@@ -156,7 +158,7 @@ export default class BikramSambat {
     }
     const gregorianDate = new Date(date)
     if (gregorianDate.toString() === InvalidDate) {
-      return new BikramSambat()
+      return new BikramSambat(InvalidDate)
     }
     const { newYearDate, bsYear } = getNewYearDateInfo(gregorianDate)
     const daysFromNewYear = getDaysBetweenTwoAdDates(
