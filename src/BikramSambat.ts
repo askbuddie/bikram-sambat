@@ -1,19 +1,22 @@
 import { format } from 'format'
 import { isDayValid, parse } from 'parser'
 import { DateFormat, InvalidDate } from 'data'
+import { getDaysFromBsNewYear } from 'utils/getDaysFromBsNewYear'
+import { addDaysToGregorianDate } from 'utils/addDaysToGregorianDate'
 import {
   NepaliDaysData,
-  // NewYearMappingData,
+  NewYearMappingData,
   NepaliMonthsData,
-  DaysInMonthsMappingData
+  DaysInMonthsMappingData,
+  type LanguageCode
 } from './data'
-import { Month } from 'data/nepali-months'
-
-type LanguageCode = 'en' | 'np'
+import { type Month } from 'data/nepali-months'
+import { getDaysBetweenTwoAdDates } from 'utils/getDaysBetweenTwoAdDates'
+import { getNewYearDateInfo } from 'utils/getNewYearDateInfo'
 
 export default class BikramSambat {
-  // private readonly nepaliDays = NepaliDaysData
-  // private readonly newYearMap = NewYearMappingData
+  private static readonly nepaliDays = NepaliDaysData
+  private static readonly newYearMap = NewYearMappingData
   private static readonly nepaliMonths = NepaliMonthsData
   private static readonly daysInMonthMap = DaysInMonthsMappingData
   private static readonly MONTHS_IN_A_YEAR = 12
@@ -45,9 +48,11 @@ export default class BikramSambat {
       this.month = dateStr.getMonth()
       this.day = dateStr.getDay()
     } else {
-      this.year = undefined
-      this.month = undefined
-      this.day = undefined
+      const currentDate = new Date().toISOString().slice(0, 10)
+      const currentBsDate = BikramSambat.toBikramSambat(currentDate)
+      this.year = currentBsDate.getYear()
+      this.month = currentBsDate.getMonth()
+      this.day = currentBsDate.getDay()
     }
   }
 
@@ -125,6 +130,46 @@ export default class BikramSambat {
     return this.year ? this.year + 1 : NaN
   }
 
+  public toGregorian(): Date {
+    if (!this.year || !this.month || !this.day) {
+      return new Date(InvalidDate)
+    }
+    const daysFromNewYear = getDaysFromBsNewYear(
+      this.year,
+      this.month,
+      this.day
+    )
+    const newYearDayAD = BikramSambat.newYearMap[this.year]
+    const gregorianDate = addDaysToGregorianDate(
+      new Date(newYearDayAD),
+      daysFromNewYear - 1
+    )
+    return gregorianDate
+  }
+
+  public static toGregorian(date: BikramSambat | string | undefined): Date {
+    const bsDate = new BikramSambat(date)
+    return bsDate.toGregorian()
+  }
+
+  public static toBikramSambat(date: Date | string | undefined): BikramSambat {
+    if (!date) {
+      return new BikramSambat()
+    }
+    const gregorianDate = new Date(date)
+    if (gregorianDate.toString() === InvalidDate) {
+      return new BikramSambat(InvalidDate)
+    }
+    const { newYearDate, bsYear } = getNewYearDateInfo(gregorianDate)
+    const daysFromNewYear = getDaysBetweenTwoAdDates(
+      gregorianDate,
+      new Date(newYearDate)
+    )
+    const bsDate = new BikramSambat(`${bsYear}-01-01`)
+    bsDate.addDays(daysFromNewYear)
+    return bsDate
+  }
+
   /**
    * Adds the given number of years to the BikramSambat instance.
    * @param years - The number of years to add.
@@ -186,22 +231,20 @@ export default class BikramSambat {
       return this
     }
     const totalDays = this.day + days
-    const adjustMonth = (
-      remainingDays: number,
-      monthsToAdd: number
-    ): BikramSambat => {
+    const adjustMonth = (remainingDays: number): BikramSambat => {
       const daysInMonth = this.getDaysInMonth()
       if (remainingDays > daysInMonth) {
-        return adjustMonth(remainingDays - daysInMonth, monthsToAdd + 1)
+        this.addMonths(1)
+        return adjustMonth(remainingDays - daysInMonth)
       } else if (remainingDays <= 0) {
-        return adjustMonth(daysInMonth + remainingDays, monthsToAdd - 1)
+        this.addMonths(-1)
+        return adjustMonth(daysInMonth + remainingDays)
       } else {
         this.day = remainingDays
-        this.addMonths(monthsToAdd)
         return this
       }
     }
-    return adjustMonth(totalDays, 0)
+    return adjustMonth(totalDays)
   }
 
   /**
@@ -230,12 +273,13 @@ export default class BikramSambat {
     return daysInCurrentYear === BikramSambat.DAYS_IN_A_LEAP_YEAR
   }
 
-  public getDayOfWeek(): string {
+  public getDayOfWeek(): number {
     if (this.year === undefined || this.month === undefined) {
-      return InvalidDate
+      return NaN
     }
-    // has dep on .toGregorian()
-    return ''
+    const dateInGregorian = this.toGregorian()
+    const dayOfWeek = dateInGregorian.getDay()
+    return dayOfWeek
   }
 
   public getPreviousMonth(): Month | null {
@@ -254,11 +298,11 @@ export default class BikramSambat {
     return BikramSambat.nepaliMonths[month - 1]
   }
 
-  public getWeekdayNames(language?: LanguageCode): string[] {
-    return NepaliDaysData.map((day) => day[language ?? 'np'])
+  public static getWeekdayNames(language?: LanguageCode): string[] {
+    return BikramSambat.nepaliDays.map((day) => day[language ?? 'np'])
   }
 
-  public getMonthNames(language?: LanguageCode): string[] {
+  public static getMonthNames(language?: LanguageCode): string[] {
     return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
 
