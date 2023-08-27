@@ -222,4 +222,13 @@ describe('BikramSambat Class', () => {
       expect(bikramSambat1.isBefore(bikramSambat2)).toBe(expected)
     })
   })
+  it('should properly return startOfMonth value', () => {
+    const BikramSambat1 = new BikramSambat('2073-01-01')
+    expect(BikramSambat1.startOfMonth).toBe('2073-01-01')
+  })
+  it('should properly return endOfMonth value', () => {
+    const BikramSambat1 = new BikramSambat('2073-01-01')
+
+    expect(BikramSambat1.endOfMonth).toBe('2073-01-30')
+  })
 })
