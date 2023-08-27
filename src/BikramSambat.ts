@@ -473,9 +473,6 @@ export default class BikramSambat {
     if (this.year === undefined || this.month === undefined) {
       return this
     }
-    // return new BikramSambat(
-    //   `${this.year}-${this.month.toString().padStart(2, '0')}-01`
-    // )
     const firstDayOfMonth = new BikramSambat(this)
     firstDayOfMonth.setDay(1)
     return firstDayOfMonth
@@ -486,12 +483,8 @@ export default class BikramSambat {
       return this
     }
     const daysInMonth = this.getDaysInMonth()
-
     const lastDayOfMonth = new BikramSambat(this)
     lastDayOfMonth.setDay(daysInMonth)
     return lastDayOfMonth
-    // return new BikramSambat(
-    //   `${this.year}-${this.month.toString().padStart(2, '0')}-${daysInMonth}`
-    // )
   }
 }
