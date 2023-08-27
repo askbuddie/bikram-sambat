@@ -57,6 +57,30 @@ export default class BikramSambat {
   }
 
   /**
+   * Sets the year property to the provided value.
+   * @param {number | undefined} year
+   */
+  public setYear(year: number | undefined) {
+    this.year = year
+  }
+
+  /**
+   * Sets the month property to the provided value.
+   * @param {number | undefined} month
+   */
+  public setMonth(month: number | undefined) {
+    this.month = month
+  }
+
+  /**
+   * Sets the day property to the provided value.
+   * @param {number | undefined} day
+   */
+  public setDay(day: number | undefined) {
+    this.day = day
+  }
+
+  /**
    * Returns the year of the Bikram Sambat date.
    * @returns {number} year
    */
