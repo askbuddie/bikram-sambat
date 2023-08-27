@@ -6,6 +6,24 @@ describe('BikramSambat Class', () => {
     expect(bikramSambat).toBeInstanceOf(BikramSambat)
   })
 
+  it('should set the property year to given value', () => {
+    const bikramSambat = new BikramSambat()
+    bikramSambat.setYear(2000)
+    expect(bikramSambat.getYear()).toBe(2000)
+  })
+
+  it('should set the property month to given value', () => {
+    const bikramSambat = new BikramSambat()
+    bikramSambat.setMonth(8)
+    expect(bikramSambat.getMonth()).toBe(8)
+  })
+
+  it('should set the property day to given value', () => {
+    const bikramSambat = new BikramSambat()
+    bikramSambat.setDay(15)
+    expect(bikramSambat.getDay()).toBe(15)
+  })
+
   it('should return correct formatted date .format()', () => {
     const bikramSambat = new BikramSambat('2075-01-01')
     expect(bikramSambat.format('YYYY-MM-DD')).toBe('2075-01-01')
