@@ -40,8 +40,8 @@ export default class BikramSambat {
       } else {
         const { year, month, day } = parsedDate
         this.year = year
-        this.month = month
-        this.day = day
+        this.month = month ?? 1
+        this.day = day ?? 1
       }
     } else if (dateStr instanceof BikramSambat) {
       this.year = dateStr.getYear()
@@ -307,7 +307,7 @@ export default class BikramSambat {
   }
 
   public isSameYear(date: BikramSambat): boolean {
-    if (this.toString() === InvalidDate) {
+    if (this.toString() === InvalidDate || date.toString() === InvalidDate) {
       return false
     }
     if (this.year === date.getYear()) {
@@ -317,7 +317,7 @@ export default class BikramSambat {
   }
 
   public isSameMonth(date: BikramSambat): boolean {
-    if (this.toString() === InvalidDate) {
+    if (this.toString() === InvalidDate || date.toString() === InvalidDate) {
       return false
     }
     if (this.year === date.getYear() && this.month === date.getMonth()) {
@@ -327,7 +327,7 @@ export default class BikramSambat {
   }
 
   public isSameDay(date: BikramSambat): boolean {
-    if (this.toString() === InvalidDate) {
+    if (this.toString() === InvalidDate || date.toString() === InvalidDate) {
       return false
     }
     if (
@@ -361,7 +361,7 @@ export default class BikramSambat {
   }
 
   public isSameWeek(date: BikramSambat): boolean {
-    if (this.toString() === InvalidDate) {
+    if (this.toString() === InvalidDate || date.toString() === InvalidDate) {
       return false
     }
     const weekStartDate = this.getWeekStartDate()
