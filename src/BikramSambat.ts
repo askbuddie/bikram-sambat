@@ -468,4 +468,23 @@ export default class BikramSambat {
   public toJSON(): string {
     return this.toString()
   }
+
+  public startOfMonth(): BikramSambat {
+    if (this.year === undefined || this.month === undefined) {
+      return this
+    }
+    const firstDayOfMonth = new BikramSambat(this)
+    firstDayOfMonth.setDay(1)
+    return firstDayOfMonth
+  }
+
+  public endOfMonth(): BikramSambat {
+    if (this.year === undefined || this.month === undefined) {
+      return this
+    }
+    const daysInMonth = this.getDaysInMonth()
+    const lastDayOfMonth = new BikramSambat(this)
+    lastDayOfMonth.setDay(daysInMonth)
+    return lastDayOfMonth
+  }
 }
