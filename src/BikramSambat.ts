@@ -441,7 +441,7 @@ export default class BikramSambat {
     return currentDate.addDays(1)
   }
 
-  public toJson(): string {
+  public toJSON(): string {
     return this.toString()
   }
 }
