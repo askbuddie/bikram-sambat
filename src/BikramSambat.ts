@@ -440,4 +440,8 @@ export default class BikramSambat {
     const currentDate = new BikramSambat(this)
     return currentDate.addDays(1)
   }
+
+  public toJson(): string {
+    return this.toString()
+  }
 }
