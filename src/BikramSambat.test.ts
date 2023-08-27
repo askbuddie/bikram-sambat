@@ -223,12 +223,19 @@ describe('BikramSambat Class', () => {
     })
   })
   it('should properly return startOfMonth value', () => {
-    const BikramSambat1 = new BikramSambat('2073-01-01')
-    expect(BikramSambat1.startOfMonth).toBe('2073-01-01')
+    const originalDate = new BikramSambat('2078-08-15')
+    const startOfMonth = originalDate.startOfMonth()
+
+    expect(startOfMonth.getYear()).toBe(2078)
+    expect(startOfMonth.getMonth()).toBe(8)
+    expect(startOfMonth.getDay()).toBe(1)
   })
   it('should properly return endOfMonth value', () => {
-    const BikramSambat1 = new BikramSambat('2073-01-01')
+    const originalDate = new BikramSambat('2078-08-15')
+    const endOfMonth = originalDate.endOfMonth()
 
-    expect(BikramSambat1.endOfMonth).toBe('2073-01-30')
+    expect(endOfMonth.getYear()).toBe(2078)
+    expect(endOfMonth.getMonth()).toBe(8)
+    expect(endOfMonth.getDay()).toBe(29)
   })
 })
