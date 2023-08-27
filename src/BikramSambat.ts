@@ -444,4 +444,23 @@ export default class BikramSambat {
   public toJSON(): string {
     return this.toString()
   }
+
+  public startOfMonth(): BikramSambat {
+    if (this.year === undefined || this.month === undefined) {
+      return this
+    }
+    return new BikramSambat(
+      `${this.year}-${this.month.toString().padStart(2, '0')}-01`
+    )
+  }
+
+  public endOfMonth(): BikramSambat {
+    if (this.year === undefined || this.month === undefined) {
+      return this
+    }
+    const daysInMonth = this.getDaysInMonth()
+    return new BikramSambat(
+      `${this.year}-${this.month.toString().padStart(2, '0')}-${daysInMonth}`
+    )
+  }
 }
