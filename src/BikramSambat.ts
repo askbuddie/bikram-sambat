@@ -463,4 +463,8 @@ export default class BikramSambat {
       `${this.year}-${this.month.toString().padStart(2, '0')}-${daysInMonth}`
     )
   }
+
+  public toJSON(): string {
+    return this.toString()
+  }
 }
