@@ -40,8 +40,8 @@ export default class BikramSambat {
       } else {
         const { year, month, day } = parsedDate
         this.year = year
-        this.month = month
-        this.day = day
+        this.month = month ?? 1
+        this.day = day ?? 1
       }
     } else if (dateStr instanceof BikramSambat) {
       this.year = dateStr.getYear()
@@ -306,6 +306,132 @@ export default class BikramSambat {
     return NepaliMonthsData.map((month) => month[language ?? 'np'])
   }
 
+  public isSameYear(date: BikramSambat): boolean {
+    if (this.toString() === InvalidDate || date.toString() === InvalidDate) {
+      return false
+    }
+    if (this.year === date.getYear()) {
+      return true
+    }
+    return false
+  }
+
+  public isSameMonth(date: BikramSambat): boolean {
+    if (this.toString() === InvalidDate || date.toString() === InvalidDate) {
+      return false
+    }
+    if (this.year === date.getYear() && this.month === date.getMonth()) {
+      return true
+    }
+    return false
+  }
+
+  public isSameDay(date: BikramSambat): boolean {
+    if (this.toString() === InvalidDate || date.toString() === InvalidDate) {
+      return false
+    }
+    if (
+      this.year === date.getYear() &&
+      this.month === date.getMonth() &&
+      this.day === date.getDay()
+    ) {
+      return true
+    }
+    return false
+  }
+
+  public getWeekStartDate(): BikramSambat {
+    if (this.toString() === InvalidDate) {
+      return this
+    }
+    const currentDate = new BikramSambat(this)
+    const dayOfWeek = currentDate.getDayOfWeek()
+    const startOfWeek = currentDate.addDays(-dayOfWeek)
+    return startOfWeek
+  }
+
+  public getWeekEndDate(): BikramSambat {
+    if (this.toString() === InvalidDate) {
+      return this
+    }
+    const currentDate = new BikramSambat(this)
+    const dayOfWeek = currentDate.getDayOfWeek()
+    const endOfWeek = currentDate.addDays(6 - dayOfWeek)
+    return endOfWeek
+  }
+
+  public isSameWeek(date: BikramSambat): boolean {
+    if (this.toString() === InvalidDate || date.toString() === InvalidDate) {
+      return false
+    }
+    const weekStartDate = this.getWeekStartDate()
+    const weekEndDate = this.getWeekEndDate()
+    if (weekStartDate.isAfter(date) && weekEndDate.isBefore(date)) {
+      return true
+    }
+    return false
+  }
+
+  /**
+   * Returns true if the given date is after the current date.
+   * @param date - BikramSambat
+   * @returns boolean
+   * @example
+   * const date = new BikramSambat('2077-01-01')
+   * const date2 = new BikramSambat('2077-01-02')
+   * date.isAfter(date2) // true
+   */
+  public isAfter(date: BikramSambat): boolean {
+    if (
+      this.year === undefined ||
+      this.month === undefined ||
+      this.day === undefined ||
+      date.toString() === InvalidDate
+    ) {
+      return false
+    }
+    if (this.year < date.getYear()) {
+      return true
+    } else if (this.year > date.getYear()) {
+      return false
+    }
+
+    if (this.month < date.getMonth()) {
+      return true
+    } else if (this.month > date.getMonth()) {
+      return false
+    }
+
+    if (this.day < date.getDay()) {
+      return true
+    } else if (this.day > date.getDay()) {
+      return false
+    }
+
+    return false // Dates are equal
+  }
+
+  /**
+   * Returns true if the given date is before the current date.
+   * @param date
+   * @returns boolean
+   * @example
+   * const date = new BikramSambat('2077-01-01')
+   * const date2 = new BikramSambat('2077-01-02')
+   * date.isBefore(date2) // false
+   */
+  public isBefore(date: BikramSambat): boolean {
+    if (
+      this.year === undefined ||
+      this.month === undefined ||
+      this.day === undefined ||
+      date.toString() === InvalidDate ||
+      this.isSameDay(date)
+    ) {
+      return false
+    }
+    return !this.isAfter(date)
+  }
   public getPreviousDay(): BikramSambat {
     const currentDate = new BikramSambat(this)
     return currentDate.addDays(-1)
@@ -314,5 +440,4 @@ export default class BikramSambat {
     const currentDate = new BikramSambat(this)
     return currentDate.addDays(1)
   }
-
 }
