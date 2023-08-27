@@ -432,4 +432,12 @@ export default class BikramSambat {
     }
     return !this.isAfter(date)
   }
+  public getPreviousDay(): BikramSambat {
+    const currentDate = new BikramSambat(this)
+    return currentDate.addDays(-1)
+  }
+  public getNextDay(): BikramSambat {
+    const currentDate = new BikramSambat(this)
+    return currentDate.addDays(1)
+  }
 }
