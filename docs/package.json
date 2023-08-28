@@ -1,7 +1,7 @@
 {
   "name": "bikram-sambat-docs",
   "version": "0.0.1",
-  "description": "Docs for @askbuddie/bikram-sambat",
+  "description": "Documentation for Bikram Sambat date picker by Ask Buddie",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
