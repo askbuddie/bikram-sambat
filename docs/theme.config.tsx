@@ -20,8 +20,11 @@ const config: DocsThemeConfig = {
   },
   primaryHue: {
     light: 15,
-    dark: null
-  }
+    dark: 20
+  },
+  useNextSeoProps: () => ({
+    titleTemplate: '%s – Bikram Sambat'
+  })
 }
 
 export default config
