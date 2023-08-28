@@ -1,0 +1,6 @@
+{
+  "to-gregorian": "toGregorian",
+  "to-bikram-sambat": "toBikramSambat",
+  "get-weekday-names": "getWeekdayNames",
+  "get-month-names": "getMonthNames"
+}

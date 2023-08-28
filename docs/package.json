@@ -1,0 +1,29 @@
+{
+  "name": "bikram-sambat-docs",
+  "version": "0.0.1",
+  "description": "Docs for @askbuddie/bikram-sambat",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/askbuddie/bikram-sambat/"
+  },
+  "bugs": {
+    "url": "https://github.com/askbuddie/bikram-sambat/issues"
+  },
+  "homepage": "https://github.com/askbuddie/bikram-sambat#readme",
+  "dependencies": {
+    "next": "^13.0.6",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "typescript": "^4.9.3"
+  }
+}
