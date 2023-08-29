@@ -1,0 +1,22 @@
+### `format(dateFormat: DateFormat): string`
+
+Formats the Bikram Sambat date into the specified format.
+
+The supported date formats are:
+
+- YYYY  // 2080
+- YYYY-MM // 2080-12
+- YYYY-MM-DD  // 2080-12-31
+- YYY-MM-DD // 080-12-31
+- YY-MM-DD  // 80-12-31
+- DD-MMMM-YYYY  // 31-Chaitra-2080
+- DD-MM-YYYY  // 31-12-2080
+- MMMM-DD-YYYY  // Chaitra-31-2080
+- MMMM DD,YYYY  // Chaitra 31,2080
+
+Note: The date format can be separated by any of the following characters: `-`, `/`, `(space)` and `(dot)`
+
+```jsx copy
+const date = new BikramSambat('2078-05-15')
+const formattedDate = date.format('YYYY-MM-DD') // "2078-05-15"
+```
