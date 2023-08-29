@@ -14,7 +14,10 @@ To use `bikram-sambat` library in your project, install it using `npm` or `yarn`
 
 ```bash
 npm i @askbuddie/bikram-sambat
-yard add @askbuddie/bikram-sambat
+```
+
+```bash
+yarn add @askbuddie/bikram-sambat
 ```
 
 ## Getting Started
