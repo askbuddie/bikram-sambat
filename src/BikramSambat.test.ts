@@ -90,7 +90,7 @@ describe('BikramSambat Class', () => {
   it('should properly convert to Gregorian Date', () => {
     sampleData.forEach(([bsDate, adDate]) => {
       const bikramSambat = new BikramSambat(bsDate)
-      expect(bikramSambat.toGregorian().toISOString().slice(0, 10)).toBe(adDate)
+      expect(bikramSambat.toAD().toISOString().slice(0, 10)).toBe(adDate)
     })
   })
   it('should properly convert to BikramSambat Date', () => {
@@ -102,7 +102,7 @@ describe('BikramSambat Class', () => {
   it('should return Invalid Date for Invalid Date', () => {
     const bikramSambat = new BikramSambat('2075-01-32')
     const gregorianDate = new Date(InvalidDate)
-    expect(bikramSambat.toGregorian().toString()).toBe(InvalidDate)
+    expect(bikramSambat.toAD().toString()).toBe(InvalidDate)
     expect(BikramSambat.fromAD(gregorianDate).toString()).toBe(InvalidDate)
   })
 

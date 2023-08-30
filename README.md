@@ -87,7 +87,7 @@ const isAfter = date1.isAfter(date2); // true
 Convert dates between the Bikram Sambat and Gregorian calendars:
 
 ```javascript
-const gregorianDate = date1.toGregorian(); // JavaScript Date object
+const gregorianDate = date1.toAD(); // JavaScript Date object
 const bsDate = BikramSambat.fromAD(gregorianDate);
 ```
 
