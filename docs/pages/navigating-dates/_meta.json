@@ -1,7 +1,7 @@
 {
   "get-next-year": "getNextYear",
   "get-previous-year": "getPreviousYear",
-  "to-gregorian": "toGregorian",
+  "to-ad": "toAD",
   "add-years": "addYears",
   "add-months": "addMonths",
   "add-days": "addDays",
