@@ -49,7 +49,7 @@ export default class BikramSambat {
       this.day = dateStr.getDay()
     } else {
       const currentDate = new Date().toISOString().slice(0, 10)
-      const currentBsDate = BikramSambat.toBikramSambat(currentDate)
+      const currentBsDate = BikramSambat.fromAD(currentDate)
       this.year = currentBsDate.getYear()
       this.month = currentBsDate.getMonth()
       this.day = currentBsDate.getDay()
@@ -176,7 +176,7 @@ export default class BikramSambat {
     return bsDate.toGregorian()
   }
 
-  public static toBikramSambat(date: Date | string | undefined): BikramSambat {
+  public static fromAD(date: Date | string | undefined): BikramSambat {
     if (!date) {
       return new BikramSambat()
     }
