@@ -55,7 +55,7 @@ jobs:
 
       - name: Grant permissions
         run: |
-          chmod -c -R +rX "out/" | while read line; do
+          chmod -c -R +rX "docs/out/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
 
