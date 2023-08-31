@@ -51,10 +51,7 @@ jobs:
         run: yarn install
 
       - name: Build Docs App
-        run: yarn next build
-
-      - name: Export Docs App
-        run: yarn next export
+        run: yarn build
 
       - name: Upload Docs App
         uses: actions/upload-pages-artifact@v1
