@@ -33,7 +33,7 @@ jobs:
           cache: 'yarn'
 
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v3
         with:
           static_site_generator: next
 
@@ -53,16 +53,16 @@ jobs:
       - name: Build Docs App
         run: yarn build
 
-      - name: Grant permissions
-        run: |
-          chmod -c -R +rX docs/out | while read line; do
-            echo "::warning title=Invalid file permissions automatically fixed::$line"
-          done
+      # - name: Grant permissions
+      #   run: |
+      #     chmod -c -R +rX docs/out | while read line; do
+      #       echo "::warning title=Invalid file permissions automatically fixed::$line"
+      #     done
 
       - name: Upload Docs App
-        uses: actions/upload-pages-artifact@v2.0.0
+        uses: actions/upload-pages-artifact@v2
         with:
-          path: ./out
+          path: docs/out
 
   deploy:
     environment:
@@ -73,4 +73,4 @@ jobs:
     steps:
       - name: Deploy Docs App
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
