@@ -61,10 +61,7 @@ jobs:
 
       - name: Check Working Path
         run: |
-          echo ${{ github.workspace }}
-          ls
-          cd ${{ github.workspace }}/docs
-          ls
+          ls -a
 
       # - name: Upload Docs App
       #   uses: actions/upload-pages-artifact@v2
