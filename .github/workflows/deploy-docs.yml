@@ -62,7 +62,7 @@ jobs:
       - name: Upload Docs App
         uses: actions/upload-pages-artifact@v2
         with:
-          path: docs/out
+          path: ./docs/out
 
   deploy:
     environment:
