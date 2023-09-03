@@ -63,7 +63,7 @@ jobs:
         run: |
           echo ${{ github.workspace }}
           ls
-          cd ${{ github.workspace }}
+          cd ${{ github.workspace }}/docs
           ls
 
       # - name: Upload Docs App
