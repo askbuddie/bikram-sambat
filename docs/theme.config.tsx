@@ -1,7 +1,6 @@
 import React from 'react'
-import { DocsThemeConfig } from 'nextra-theme-docs'
 import Link from 'next/link'
-const config: DocsThemeConfig = {
+const config = {
   logo: (
     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
       Bikram Sambat
@@ -24,10 +23,8 @@ const config: DocsThemeConfig = {
       </div>
     )
   },
-  primaryHue: {
-    light: 15,
-    dark: 20
-  },
+  primaryHue: 1,
+  primarySaturation: 77,
   useNextSeoProps: () => ({
     titleTemplate: '%s – Bikram Sambat'
   })
