@@ -20,7 +20,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "baseUrl": "./src",
     "esModuleInterop": true,
     "resolveJsonModule": true,

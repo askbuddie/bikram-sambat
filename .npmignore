@@ -1,0 +1,5 @@
+
+.github
+.gitignore
+/docs
+src/**/*.test.ts
