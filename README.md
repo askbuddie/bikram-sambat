@@ -27,7 +27,7 @@ Here's a quick guide to get started with the `BikramSambat` class:
 ### Import the Class
 
 ```javascript
-import { BikramSambat } from '@askbuddie/bikram-sambat';
+import BikramSambat from '@askbuddie/bikram-sambat'
 ```
 
 ### Initialize a Date
@@ -35,8 +35,8 @@ import { BikramSambat } from '@askbuddie/bikram-sambat';
 You can create a `BikramSambat` instance using different initialization methods:
 
 ```javascript
-const date1 = new BikramSambat('2080-05-15'); // Initialize with a date string
-const date2 = new BikramSambat(); // Initialize with the current date
+const date1 = new BikramSambat('2080-05-15') // Initialize with a date string
+const date2 = new BikramSambat() // Initialize with the current date
 ```
 
 ## Manipulating Dates
@@ -46,9 +46,9 @@ const date2 = new BikramSambat(); // Initialize with the current date
 Retrieve individual date components:
 
 ```javascript
-const year = date1.getYear(); // 2080
-const month = date1.getMonth(); // 5
-const day = date1.getDay(); // 15
+const year = date1.getYear() // 2080
+const month = date1.getMonth() // 5
+const day = date1.getDay() // 15
 ```
 
 ### Set Components
@@ -56,9 +56,9 @@ const day = date1.getDay(); // 15
 Update date components:
 
 ```javascript
-date1.setYear(2079);
-date1.setMonth(6);
-date1.setDay(20);
+date1.setYear(2079)
+date1.setMonth(6)
+date1.setDay(20)
 ```
 
 ### Formatting
@@ -66,8 +66,8 @@ date1.setDay(20);
 Format dates as strings:
 
 ```javascript
-const formattedDate = date1.format('YYYY-MM-DD'); // "2080-05-15"
-const dateString = date1.toString(); // "2080-05-15"
+const formattedDate = date1.format('YYYY-MM-DD') // "2080-05-15"
+const dateString = date1.toString() // "2080-05-15"
 ```
 
 ## Navigation and Comparison
@@ -75,11 +75,11 @@ const dateString = date1.toString(); // "2080-05-15"
 Navigate through dates and perform comparisons:
 
 ```javascript
-const prevYear = date1.getPreviousYear(); // 2079
-const nextYear = date1.getNextYear(); // 2081
+const prevYear = date1.getPreviousYear() // 2079
+const nextYear = date1.getNextYear() // 2081
 
-const isSameMonth = date1.isSameMonth(date2); // true
-const isAfter = date1.isAfter(date2); // true
+const isSameMonth = date1.isSameMonth(date2) // true
+const isAfter = date1.isAfter(date2) // true
 ```
 
 ## Conversion and Retrieval
@@ -87,15 +87,15 @@ const isAfter = date1.isAfter(date2); // true
 Convert dates between the Bikram Sambat and Gregorian calendars:
 
 ```javascript
-const gregorianDate = date1.toAD(); // JavaScript Date object
-const bsDate = BikramSambat.fromAD(gregorianDate);
+const gregorianDate = date1.toAD() // JavaScript Date object
+const bsDate = BikramSambat.fromAD(gregorianDate)
 ```
 
 Retrieve relative dates:
 
 ```javascript
-const prevDay = date1.getPreviousDay();
-const weekStart = date1.getWeekStartDate(); 
+const prevDay = date1.getPreviousDay()
+const weekStart = date1.getWeekStartDate()
 ```
 
 ## Full Documentation

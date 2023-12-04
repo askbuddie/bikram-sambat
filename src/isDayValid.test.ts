@@ -1,4 +1,4 @@
-import { isDayValid } from 'parser'
+import { isDayValid } from './parser'
 
 describe('isDayValid (Bikram Sambat Calendar)', () => {
   it('should return true for valid day', () => {

@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
     "target": "es2020",
     "module": "NodeNext",
     "removeComments": true,
@@ -12,10 +10,6 @@
     "allowSyntheticDefaultImports": true,
     "outDir": "dist",
     "strict": true,
-    "lib": [
-      "es2022",
-      "dom"
-    ],
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -27,9 +21,9 @@
     "isolatedModules": true,
     "incremental": true,
     "allowUnreachableCode": false,
-    "alwaysStrict": true
+    "alwaysStrict": true,
+    "declaration": true,
+    "declarationMap": true
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

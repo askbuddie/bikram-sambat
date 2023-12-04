@@ -2,7 +2,8 @@
   "name": "@askbuddie/bikram-sambat",
   "version": "1.0.0",
   "description": "A JS library for Nepali dates. Developed by Ask Buddie, this NPM library simplifies working with the Nepali calendar in JavaScript. It offers inuitive API methods making Nepali date handling effortless.",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",

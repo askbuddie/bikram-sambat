@@ -1,6 +1,6 @@
-import { format } from 'format'
-import BikramSambat from 'BikramSambat'
-import { InvalidDate } from 'data'
+import { format } from './format'
+import { BikramSambat } from './BikramSambat'
+import { InvalidDate } from './data'
 describe('Date Formatting', () => {
   it('should format date to YYYY', () => {
     const date = new BikramSambat('2079-8-15')
