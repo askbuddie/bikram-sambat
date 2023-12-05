@@ -1,5 +1,5 @@
-import BikramSambat from 'BikramSambat'
-import { InvalidDate } from 'data'
+import { BikramSambat } from './BikramSambat'
+import { InvalidDate } from './data'
 describe('BikramSambat Class', () => {
   it('should create an instance of BikramSambat with empty constructor', () => {
     const bikramSambat = new BikramSambat()

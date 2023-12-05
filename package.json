@@ -1,8 +1,9 @@
 {
-  "name": "nepali-date-picker",
-  "version": "0.0.1",
-  "description": "A library to support dates according to Bikram Sambat Calendar.",
-  "main": "src/index.ts",
+  "name": "@askbuddie/bikram-sambat",
+  "version": "1.0.0",
+  "description": "A JS library for Nepali dates. Developed by Ask Buddie, this NPM library simplifies working with the Nepali calendar in JavaScript. It offers inuitive API methods making Nepali date handling effortless.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
@@ -12,19 +13,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/askbuddie/nepali-date-picker.git"
+    "url": "git+https://github.com/askbuddie/bikram-sambat.git"
   },
   "keywords": [
     "nepali-date-picker",
     "bikram-sambat",
-    "nepali-date"
+    "nepali-date",
+    "nepali-date-js"
   ],
-  "author": "",
+  "author": "Ask Buddie <info@askbuddie.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/askbuddie/nepali-date-picker/issues"
+    "url": "https://github.com/askbuddie/bikram-sambat/issues"
   },
-  "homepage": "https://github.com/askbuddie/nepali-date-picker#readme",
+  "homepage": "https://github.com/askbuddie/bikram-sambat#readme",
   "devDependencies": {
     "@types/jest": "^29.5.3",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
@@ -34,5 +36,8 @@
     "prettier": "^3.0.1",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

@@ -1,4 +1,4 @@
-import { InvalidDate } from 'data'
+import { InvalidDate } from './data'
 import { parse } from './parser'
 describe('Date Parsing', () => {
   it('should parse YYYY format', () => {
