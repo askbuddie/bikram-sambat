@@ -1,4 +1,4 @@
-import { NewYearMappingData } from 'data'
+import { NewYearMappingData } from '../data'
 
 interface DateInfo {
   bsYear: number

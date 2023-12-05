@@ -4,8 +4,8 @@ import {
   InvalidDate,
   NepaliMonthsNameEn,
   type ErrorInvalidDate
-} from 'data'
-import { generateDateFormatOrder } from 'utils/generateDateFormatOrder'
+} from './data'
+import { generateDateFormatOrder } from './utils/generateDateFormatOrder'
 
 type ParseResult = {
   year?: number

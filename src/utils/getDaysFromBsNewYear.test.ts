@@ -1,4 +1,4 @@
-import { DaysInMonthsMappingData } from 'data'
+import { DaysInMonthsMappingData } from '../data'
 import { getDaysFromBsNewYear } from './getDaysFromBsNewYear'
 
 describe('getDaysFromBsNewYear', () => {

@@ -1,20 +1,21 @@
-import { format } from 'format'
-import { isDayValid, parse } from 'parser'
-import { DateFormat, InvalidDate } from 'data'
-import { getDaysFromBsNewYear } from 'utils/getDaysFromBsNewYear'
-import { addDaysToGregorianDate } from 'utils/addDaysToGregorianDate'
+import { format } from './format'
+import { isDayValid, parse } from './parser'
+import { getDaysFromBsNewYear } from './utils/getDaysFromBsNewYear'
+import { addDaysToGregorianDate } from './utils/addDaysToGregorianDate'
 import {
   NepaliDaysData,
   NewYearMappingData,
   NepaliMonthsData,
   DaysInMonthsMappingData,
+  DateFormat,
+  InvalidDate,
   type LanguageCode
 } from './data'
-import { type Month } from 'data/nepali-months'
-import { getDaysBetweenTwoAdDates } from 'utils/getDaysBetweenTwoAdDates'
-import { getNewYearDateInfo } from 'utils/getNewYearDateInfo'
+import { type Month } from './data/nepali-months'
+import { getDaysBetweenTwoAdDates } from './utils/getDaysBetweenTwoAdDates'
+import { getNewYearDateInfo } from './utils/getNewYearDateInfo'
 
-export default class BikramSambat {
+export class BikramSambat {
   private static readonly nepaliDays = NepaliDaysData
   private static readonly newYearMap = NewYearMappingData
   private static readonly nepaliMonths = NepaliMonthsData

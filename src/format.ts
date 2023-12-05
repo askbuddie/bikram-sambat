@@ -1,6 +1,6 @@
-import BikramSambat from 'BikramSambat'
-import { NepaliMonthsNameEn, type DateFormat, InvalidDate } from 'data'
-import { generateDateFormatOrder } from 'utils/generateDateFormatOrder'
+import { BikramSambat } from './BikramSambat'
+import { NepaliMonthsNameEn, type DateFormat, InvalidDate } from './data'
+import { generateDateFormatOrder } from './utils/generateDateFormatOrder'
 
 /**
  * Formats a BikramSambat date into the specified format.

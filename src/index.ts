@@ -1,6 +1,3 @@
-import BikramSambat from 'BikramSambat';
-const NepaliDateLib = {
-  BikramSambat
-}
+import { BikramSambat } from './BikramSambat'
 
-export default NepaliDateLib;
+export default BikramSambat
