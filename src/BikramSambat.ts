@@ -181,7 +181,16 @@ export class BikramSambat {
     if (!date) {
       return new BikramSambat()
     }
+
     const gregorianDate = new Date(date)
+
+    // Ensure the date is normalized to midnight UTC
+    gregorianDate.setUTCHours(0, 0, 0, 0)
+
+    if (isNaN(gregorianDate.getTime())) {
+      return new BikramSambat(InvalidDate)
+    }
+
     if (gregorianDate.toString() === InvalidDate) {
       return new BikramSambat(InvalidDate)
     }
