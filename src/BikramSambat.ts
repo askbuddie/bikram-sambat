@@ -49,7 +49,7 @@ export class BikramSambat {
       this.month = dateStr.getMonth()
       this.day = dateStr.getDay()
     } else {
-      const currentDate = new Date().toISOString().slice(0, 10)
+      const currentDate = new Date()
       const currentBsDate = BikramSambat.fromAD(currentDate)
       this.year = currentBsDate.getYear()
       this.month = currentBsDate.getMonth()
@@ -183,9 +183,6 @@ export class BikramSambat {
     }
 
     const gregorianDate = new Date(date)
-
-    // Ensure the date is normalized to midnight UTC
-    gregorianDate.setUTCHours(0, 0, 0, 0)
 
     if (isNaN(gregorianDate.getTime())) {
       return new BikramSambat(InvalidDate)
