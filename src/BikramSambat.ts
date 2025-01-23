@@ -49,7 +49,7 @@ export class BikramSambat {
       this.month = dateStr.getMonth()
       this.day = dateStr.getDay()
     } else {
-      const currentDate = new Date().toISOString().slice(0, 10)
+      const currentDate = new Date()
       const currentBsDate = BikramSambat.fromAD(currentDate)
       this.year = currentBsDate.getYear()
       this.month = currentBsDate.getMonth()
@@ -181,10 +181,13 @@ export class BikramSambat {
     if (!date) {
       return new BikramSambat()
     }
+
     const gregorianDate = new Date(date)
-    if (gregorianDate.toString() === InvalidDate) {
+
+    if (isNaN(gregorianDate.getTime()) || gregorianDate.toString() === InvalidDate) {
       return new BikramSambat(InvalidDate)
     }
+
     const { newYearDate, bsYear } = getNewYearDateInfo(gregorianDate)
     const daysFromNewYear = getDaysBetweenTwoAdDates(
       gregorianDate,
