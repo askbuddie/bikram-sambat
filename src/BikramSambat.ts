@@ -184,13 +184,10 @@ export class BikramSambat {
 
     const gregorianDate = new Date(date)
 
-    if (isNaN(gregorianDate.getTime())) {
+    if (isNaN(gregorianDate.getTime()) || gregorianDate.toString() === InvalidDate) {
       return new BikramSambat(InvalidDate)
     }
 
-    if (gregorianDate.toString() === InvalidDate) {
-      return new BikramSambat(InvalidDate)
-    }
     const { newYearDate, bsYear } = getNewYearDateInfo(gregorianDate)
     const daysFromNewYear = getDaysBetweenTwoAdDates(
       gregorianDate,
