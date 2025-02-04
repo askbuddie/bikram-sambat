@@ -29,6 +29,8 @@
   "homepage": "https://github.com/askbuddie/bikram-sambat#readme",
   "devDependencies": {
     "@types/jest": "^29.5.3",
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.47.0",
@@ -39,5 +41,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "next": "^15.1.6"
+  }
 }

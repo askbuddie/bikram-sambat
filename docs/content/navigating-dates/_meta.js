@@ -1,4 +1,4 @@
-{
+export default{
   "get-next-year": "getNextYear",
   "get-previous-year": "getPreviousYear",
   "to-ad": "toAD",

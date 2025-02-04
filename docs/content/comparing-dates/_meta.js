@@ -1,4 +1,4 @@
-{
+export default{
   "is-after": "isAfter",
   "is-before": "isBefore",
   "is-same-day": "isSameDay",
