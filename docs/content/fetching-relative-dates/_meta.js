@@ -1,4 +1,4 @@
-{
+export default{
   "get-previous-day": "getPreviousDay",
   "get-next-day": "getNextDay",
   "get-week-start-date": "getWeekStartDate",
