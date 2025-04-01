@@ -1,4 +1,4 @@
-{
+export default{
   "get-day": "getDay",
   "get-month": "getMonth",
   "get-year": "getYear",
